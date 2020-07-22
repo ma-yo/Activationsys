@@ -14,3 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'LoginController@index');
+Route::post('/login', 'LoginController@index');
+Route::post('/logout', 'LoginController@logout');
+Route::post('/menu', 'MenuController@index');
+Route::get('/downloadcsv', 'DownloadCsvController@index');
+Route::post('/genserial', 'GenSerialController@index');
+Route::post('/delserial', 'DelSerialController@index');
+Route::get('/activate', 'ActivateController@activate');
