@@ -24,7 +24,7 @@
             <button type="button" id="searchserial" name="searchserial" class="btn btn-primary btn-md ml-2 mr-auto">検索</button>
             @if(!empty($datas['activatedUsers']))
             <button type="button" id="selectall" name="selectall" class="btn btn-primary btn-md ml-2">全件選択</button>
-            <button type="button" id="modalopen" class="btn btn-danger btn-md ml-2">シリアル削除</button>
+            <button type="button" id="modalopen" class="btn btn-info btn-md ml-2">シリアル削除</button>
         @endif
         <button type="button" id="menu" name="menu" class="btn btn-secondary btn-md ml-2">戻る</button>
         </div>
@@ -68,16 +68,22 @@
 </form>
 
 <div class="modal fade" id="delSerialModal" tabindex="-1" role="dialog" aria-labelledby="delSerialModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-info text-white">
           <h5 class="modal-title" id="delSerialModalLabel">シリアルキーの削除</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span class="text-white" aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          選択したシリアルキーを削除しますか？
+          <table>
+            <tr>
+              <td><i class="fas fa-exclamation-circle fa-2x text-danger"></i></td>
+              <td class="align-middle"><span class="ml-3">選択したシリアルキーを削除しますか？</span></td>
+            </tr>
+          </table>
+          
         </div>
         <div class="modal-footer">
           <button type="button" id="delserial" name="delserial" class="btn btn-danger">シリアル削除</button>

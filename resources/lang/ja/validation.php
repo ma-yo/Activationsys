@@ -144,7 +144,12 @@ return [
     | 言語行です。これはメッセージをよりきれいに表示するために役に立ちます。
     |
     */
-
-    'attributes' => [],
+    'attributes' => [
+        'email' => 'メールアドレス',
+        'username' => 'ユーザー名',
+        'issued-quantity' => '発行数量',
+        'login-username' => 'ユーザーID',
+        'login-password' => 'パスワード',
+    ],
 
 ];

@@ -18,9 +18,8 @@
             <label for="lic-title" class="h4 text-info">ライセンス管理</label><br>
             <div class="container border border-info p-3 rounded">
                 <button type="button" id="genserial" name="genserial" class="btn btn-info btn-lg">シリアル生成</button>
-                <button type="button" id="delserial" name="delserial" class="btn btn-warning btn-lg">シリアル削除</button>
-                <button type="button" id="downloadserial" name="downloadserial"
-                    class="btn btn-info btn-lg">CSV出力</button>
+                <button type="button" id="delserial" name="delserial" class="btn btn-info btn-lg">シリアル削除</button>
+                <button type="button" id="downloadserial" name="downloadserial" class="btn btn-primary btn-lg">CSV出力</button>
             </div>
         </div>
     </form>
@@ -30,7 +29,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-info text-white">
+                <div class="modal-header bg-primary text-white">
                     <h5 class="modal-title" id="progressModalTitle">CSVファイルの出力中...</h5>
                 </div>
                 <div class="modal-body form-inline mx-auto">

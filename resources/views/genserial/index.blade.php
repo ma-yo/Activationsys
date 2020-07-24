@@ -19,38 +19,43 @@
         <button type="button" id="modalopen" name="modalopen" class="btn btn-info btn-md">シリアル作成</button>
         <button type="button" id="menu" name="menu" class="btn btn-secondary btn-md ml-2">戻る</button>
     </div>
-    <div class="form-group @if(!empty($errors->first('username'))) has-error @endif">
+    <div class="form-group">
         <label class="form-content text-dark">ユーザー名</label>
-        <input type="text" id="username" name="username" class="form-control" value="{{old('username')}}" placeholder="適用ユーザー名を設定してください。"> 
-        <span class="help-block text-danger">{{$errors->first('username')}}</span>
+        <input type="text" id="username" name="username" class="form-control @if(!empty($errors->first('username'))) is-invalid @endif" value="{{old('username')}}" placeholder="適用ユーザー名を設定してください。"> 
+        <span class="text-danger">{{$errors->first('username')}}</span>
     </div>
-    <div class="form-group @if(!empty($errors->first('email'))) has-error @endif">
+    <div class="form-group">
         <label class="form-content text-dark">E-MAIL</label>
-        <input type="email" id="email" name="email" class="form-control" value="{{old('email')}}" placeholder="Emailを設定してください。"> 
-        <span class="help-block text-danger">{{$errors->first('email')}}</span>
+        <input type="email" id="email" name="email" class="form-control @if(!empty($errors->first('email'))) is-invalid @endif" value="{{old('email')}}" placeholder="Emailを設定してください。"> 
+        <span class="text-danger">{{$errors->first('email')}}</span>
     </div>
-    <div class="form-group @if(!empty($errors->first('quant'))) has-error @endif">
+    <div class="form-group">
         <label class="form-content text-dark">発行数</label>
-        <input type="number" id="quant" name="quant" class="form-control" value="{{old('quant')}}" placeholder="発行数を入力してください。"> 
-        <span class="help-block text-danger">{{$errors->first('quant')}}</span>
+        <input type="number" id="issued-quantity" name="issued-quantity" class="form-control @if(!empty($errors->first('issued-quantity'))) is-invalid @endif" value="{{old('issued-quantity')}}" placeholder="発行数を入力してください。"> 
+        <span class="text-danger">{{$errors->first('issued-quantity')}}</span>
     </div>
 
 </form>
 
 <div class="modal fade" id="genSerialModal" tabindex="-1" role="dialog" aria-labelledby="genSerialModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header bg-info text-white">
           <h5 class="modal-title" id="genSerialModalLabel">シリアルキーの登録</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
+            <span class="text-white" aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-          選択したシリアルキーを登録しますか？
+        <div class="modal-body text-center align-middle">
+          <table>
+            <tr>
+              <td><i class="fas fa-info-circle fa-2x text-info"></i></td>
+              <td class="align-middle"><span class="ml-2">入力した内容にてシリアルキーを登録しますか？</span></td>
+            </tr>
+          </table>
         </div>
         <div class="modal-footer">
-          <button type="button" id="genserial" name="genserial" class="btn btn-info">シリアル登録</button>
+          <button type="button" id="genserial" name="genserial" class="btn btn-success">シリアル登録</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
         </div>
       </div>

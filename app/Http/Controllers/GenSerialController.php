@@ -49,12 +49,12 @@ class GenSerialController extends Controller
 
         $username = $request->input('username');
         $email = $request->input('email');
-        $quant = $request->input('quant');
+        $quant = $request->input('issued-quantity');
 
         $validator = Validator::make($request->all(), [
             'username'=>'required',
             'email'=>'required|email',
-            'quant'=>'required|integer|min:1|max:100'
+            'issued-quantity'=>'required|integer|min:1|max:100'
         ]);
 
         if ($validator->fails()) {

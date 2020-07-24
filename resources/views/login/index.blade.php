@@ -19,15 +19,15 @@
     <div class="row justify-content-center align-items-center">
         <form id="login-form" name="login-form" class="form p-2" action="/login" method="post" style="width:400px;">
             @csrf
-            <div class="form-group @if(!empty($errors->first('login-username'))) has-error @endif">
+            <div class="form-group">
                 <label for="username" class="text-info">Username:</label><br>
-                <input type="text" name="login-username" id="login-username" value="{{old('login-username')}}" class="form-control">
-                <span class="help-block text-danger">{{$errors->first('login-username')}}</span>
+                <input type="text" name="login-username" id="login-username" value="{{old('login-username')}}" class="form-control @if(!empty($errors->first('login-username'))) is-invalid @endif">
+                <div class="text-danger">{{$errors->first('login-username')}}</div>
             </div>
-            <div class="form-group @if(!empty($errors->first('login-password'))) has-error @endif">
+            <div class="form-group">
                 <label for="password" class="text-info">Password:</label><br>
-                <input type="password" name="login-password" id="login-password"  value="{{old('login-password')}}" class="form-control">
-                <span class="help-block text-danger">{{$errors->first('login-password')}}</span>
+                <input type="password" name="login-password" id="login-password"  value="{{old('login-password')}}" class="form-control @if(!empty($errors->first('login-password'))) is-invalid @endif">
+                <div class="text-danger">{{$errors->first('login-password')}}</div>
             </div>
 
             <div class="form-group">
