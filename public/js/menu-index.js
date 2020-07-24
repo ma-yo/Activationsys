@@ -46,9 +46,17 @@ $(function () {
             a.href = blobUrl;
             a.download = Common.formatDate(new Date(), "YYYY-MM-DD-hh-mm-ss") + '-serial-list.csv';
             a.click();
+            
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
             $('#progressModal').modal('hide');
+
         }).fail(function (jqXHR, textStatus, errorThrown) {
+            
+            $('body').removeClass('modal-open');
+            $('.modal-backdrop').remove();
             $('#progressModal').modal('hide');
+            
             alert('ファイルの取得に失敗しました。');
             console.log("ajax通信に失敗しました")
             console.log(jqXHR.status);
