@@ -32,13 +32,13 @@
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>SELECT</th>
-                    <th>NAME</th>
-                    <th>EMAIL</th>
-                    <th>SERIAL</th>
-                    <th>BIOSID</th>
-                    <th>CREATEDATE</th>
-                    <th>UPDATEDATE</th>
+                    <th>選択</th>
+                    <th>ユーザー名</th>
+                    <th>メールアドレス</th>
+                    <th>シリアルキー</th>
+                    <th>デバイスID</th>
+                    <th>登録日時</th>
+                    <th>更新日時</th>
                 </tr>
             </thead>
             @if(!empty($datas['activatedUsers']))

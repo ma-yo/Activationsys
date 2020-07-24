@@ -30,7 +30,7 @@
                     <th>シリアルキー</th>
                     <th>ユーザー名</th>
                     <th>メールアドレス</th>
-                    <th>登録日</th>
+                    <th>登録日時</th>
                 </tr>
             </thead>
             @if(!empty($datas['activatedUsers']))

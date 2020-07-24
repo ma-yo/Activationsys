@@ -34,7 +34,7 @@ class DownloadCsvController extends Controller
             'name' => 'ユーザー名',
             'email' => 'メールアドレス',
             'deviceid' => 'デバイスID',
-            'ban' => '削除済','created_at' => '登録日','updated_at' => '更新日',
+            'ban' => '削除済','created_at' => '登録日時','updated_at' => '更新日時',
         ]);
 
         $csvReader = $csvExporter->getReader();
