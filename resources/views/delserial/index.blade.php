@@ -52,7 +52,7 @@
                             <td><small>{{ $user->name }}</small></td>
                             <td><small>{{ $user->email }}</small></td>
                             <td><small>{{ $user->serialid }}</small></td>
-                            <td><small>{{ $user->biosid }}</small></td>
+                            <td><small>{{ $user->deviceid }}</small></td>
                             <td><small>{{ $user->created_at }}</small></td>
                             <td><small>{{ $user->updated_at }}</small></td>
                     @endforeach
