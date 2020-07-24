@@ -30,3 +30,4 @@ Route::post('/deleteserial', 'DelSerialController@delete');
 Route::post('/searchserial', 'DelSerialController@search');
 
 Route::get('/activate', 'ActivateController@activate');
+Route::get('/deactivate', 'ActivateController@deactivate');
