@@ -29,7 +29,7 @@
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
+                <div class="modal-header bg-info text-white">
                     <h5 class="modal-title" id="progressModalTitle">CSVファイルの出力中...</h5>
                 </div>
                 <div class="modal-body form-inline mx-auto">
