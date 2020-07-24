@@ -20,5 +20,19 @@ var Common = {
       for (var i = 0; i < length; i++) format = format.replace(/S/, milliSeconds.substring(i, i + 1));
     }
     return format;
+  },
+  sleep : function(waitMilliSec, callbackFunc){
+    var spanedSec = 0;
+    var addMilli = 100;
+    var waitFunc = function () {
+        spanedSec+=addMilli;
+        if (spanedSec >= waitMilliSec) {
+            if (callbackFunc) callbackFunc();
+            return;
+        }
+        clearTimeout(id);
+        id = setTimeout(waitFunc, addMilli);
+    };
+    var id = setTimeout(waitFunc, addMilli);
   }
 }

@@ -27,41 +27,45 @@ $(function () {
             keyboard: false
         });
 
-        //非同期処理にてCSVをダウンロードする
-        $.ajax({
-            type: 'get',
-            url: 'downloadseriallistcsv',
-            dataType: 'text'
-        }).done(function (response) {
+        //出力が早すぎるとモーダルダイアログが閉じないため、対応する
+        Common.sleep(2000, function(){
+            //非同期処理にてCSVをダウンロードする
+            $.ajax({
+                type: 'get',
+                url: 'downloadseriallistcsv',
+                dataType: 'text'
+            }).done(function (response) {
 
-            let rt = response;
-            strRt = Encoding.stringToCode(rt);
-            arrRt = Encoding.convert(strRt, "sjis", "unicode");
-            u8a = new Uint8Array(arrRt);
-            blob = new Blob([u8a], {
-                'type': 'text/csv;charset=sjis;'
-            });
-            blobUrl = window.URL.createObjectURL(blob);
-            a = document.createElement('a');
-            a.href = blobUrl;
-            a.download = Common.formatDate(new Date(), "YYYY-MM-DD-hh-mm-ss") + '-serial-list.csv';
-            a.click();
-            
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
-            $('#progressModal').modal('hide');
+                let rt = response;
+                strRt = Encoding.stringToCode(rt);
+                arrRt = Encoding.convert(strRt, "sjis", "unicode");
+                u8a = new Uint8Array(arrRt);
+                blob = new Blob([u8a], {
+                    'type': 'text/csv;charset=sjis;'
+                });
+                blobUrl = window.URL.createObjectURL(blob);
+                a = document.createElement('a');
+                a.href = blobUrl;
+                a.download = Common.formatDate(new Date(), "YYYY-MM-DD-hh-mm-ss") + '-serial-list.csv';
+                a.click();
+                
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                $('#progressModal').modal('hide');
 
-        }).fail(function (jqXHR, textStatus, errorThrown) {
-            
-            $('body').removeClass('modal-open');
-            $('.modal-backdrop').remove();
-            $('#progressModal').modal('hide');
-            
-            alert('ファイルの取得に失敗しました。');
-            console.log("ajax通信に失敗しました")
-            console.log(jqXHR.status);
-            console.log(textStatus);
-            console.log(errorThrown.message);
+            }).fail(function (jqXHR, textStatus, errorThrown) {
+                
+                $('body').removeClass('modal-open');
+                $('.modal-backdrop').remove();
+                $('#progressModal').modal('hide');
+                
+                alert('ファイルの取得に失敗しました。');
+                console.log("ajax通信に失敗しました")
+                console.log(jqXHR.status);
+                console.log(textStatus);
+                console.log(errorThrown.message);
+            }); 
         });
+        
     });
 });
