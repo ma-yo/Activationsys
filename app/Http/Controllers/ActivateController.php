@@ -44,8 +44,8 @@ class ActivateController extends Controller
         if(empty($activatedUser->deviceid)){
             $activatedUser->deviceid = $deviceid;
             $activatedUser->devicechangecount++;
-            ActivatedUser::where('serialid', $serial)->update(['deviceid' => $deviceid, 'devicechangecount'=> $activatedUser->devicechangecount, 'devicechangecount'=> $activatedUser->devicechangecount]);
-            return response()->json(['result'=>'success', 'code' => '002', 'description'=>'デバイスIDをシリアルキーに新規関連付けしました。', 'user' => $activatedUser]);
+            ActivatedUser::where('serialid', $serial)->update(['deviceid' => $deviceid, 'devicechangecount'=> $activatedUser->devicechangecount]);
+            return response()->json(['result'=>'success', 'code' => '002','devicechangecount'=> $activatedUser->devicechangecount, 'description'=>'デバイスIDをシリアルキーに新規関連付けしました。', 'user' => $activatedUser]);
         }
         //デバイスIDがDBに登録されているものと一致しない場合は、別PCから実行されている可能性があるため、エラーとして返す
         return response()->json(['result'=>'fail', 'code' => '104', 'devicechangecount'=> '0',  'description'=>'デバイスIDが一致しません。']);
