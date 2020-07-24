@@ -34,6 +34,7 @@ class DownloadCsvController extends Controller
             'name' => 'ユーザー名',
             'email' => 'メールアドレス',
             'deviceid' => 'デバイスID',
+            'devicechangecount' => 'デバイスID登録回数',
             'ban' => '削除済','created_at' => '登録日時','updated_at' => '更新日時',
         ]);
 

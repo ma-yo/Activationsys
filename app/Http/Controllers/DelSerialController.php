@@ -28,7 +28,7 @@ class DelSerialController extends Controller
         }
 
         //上位100件のみ検索する
-        $activatedUsers = ActivatedUser::whereNull('ban')->take(100)->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
+        $activatedUsers = ActivatedUser::whereNull('ban')->take(100)->orderBy('devicechangecount', 'desc')->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
         $this->response['datas'] = ['activatedUsers' => $activatedUsers];
         return view('delserial/index', $this->response);
     }
@@ -56,7 +56,7 @@ class DelSerialController extends Controller
         });
 
         //上位100件のみ検索する
-        $activatedUsers = ActivatedUser::whereNull('ban')->take(100)->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
+        $activatedUsers = ActivatedUser::whereNull('ban')->take(100)->orderBy('devicechangecount', 'desc')->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
         $this->response['datas'] = ['activatedUsers' => $activatedUsers];
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0003;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_INFO;
@@ -84,7 +84,7 @@ class DelSerialController extends Controller
 
         //文字列が空の場合は、100件出力
         if(empty($word)){
-            $activatedUsers = ActivatedUser::whereNull('ban')->take(100)->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
+            $activatedUsers = ActivatedUser::whereNull('ban')->take(100)->orderBy('devicechangecount', 'desc')->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
         }else{
             //名称とEMAILであいまい検索を行う
             $activatedUsers =  ActivatedUser::where(function($query) use ($word){

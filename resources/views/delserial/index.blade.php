@@ -37,6 +37,7 @@
                     <th>メールアドレス</th>
                     <th>シリアルキー</th>
                     <th>デバイスID</th>
+                    <th>デバイス更新回数</th>
                     <th>登録日時</th>
                     <th>更新日時</th>
                 </tr>
@@ -53,6 +54,7 @@
                             <td><small>{{ $user->email }}</small></td>
                             <td><small>{{ $user->serialid }}</small></td>
                             <td><small>{{ $user->deviceid }}</small></td>
+                            <td><small>{{ $user->devicechangecount }}</small></td>
                             <td><small>{{ $user->created_at }}</small></td>
                             <td><small>{{ $user->updated_at }}</small></td>
                     @endforeach
