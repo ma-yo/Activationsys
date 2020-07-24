@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
+;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -11,12 +12,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            [
-              'name' => 'WestHill',
-              'password' => 'Nishiok@',
-              'created_at' => new DateTime(),
-            ],
-          ]);
+      //初回ログインユーザーを作成する
+      DB::table('users')->insert([
+          [
+            'name' => 'WestHill',
+            'password' => 'Nishiok@',
+            'created_at' => new DateTime(),
+          ],
+        ]);
     }
 }

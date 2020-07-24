@@ -5,33 +5,48 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ActivatedUser;
 
-//アクティベーションクラス
+/**
+ * アクティベーションクラス
+ */
 class ActivateController extends Controller
 {
-    //認証を行う
+    /**
+     * 認証を行う
+     * 
+     *
+     * @param Request $request
+     * @return void
+     */
     public function activate(Request $request){
         $serial = $request->input('serialid');
-        $bios = $request->input('biosid');
-        $activatedUser = ActivatedUser::where('serialid', $serial)->first();
+        $deviceid = $request->input('deviceid');
 
+        //認証ユーザーテーブルよりシリアルキーにてデータを取得する
+        $activatedUser = ActivatedUser::where('serialid', $serial)->first();
+        //シリアルキーが存在しない場合はエラーとして返す
         if(empty($activatedUser)){
-            return response()->json(['result'=>'error', 'description'=>'parameter serialid not found']);
+            return response()->json(['result'=>'fail', 'code' => '101', 'description'=>'シリアルキーが見つかりません。']);
         }
+        //シリアルキーが見つかったが、アカウントが削除されている場合は、エラーとして返す
         if($activatedUser->ban != null){
-            return response()->json(['result'=>'error', 'description'=>'serialid was ban!!']);
+            return response()->json(['result'=>'fail', 'code' => '102', 'description'=>'シリアルキーは非許可に設定されています。']);
         }
-        if(empty($bios)){
-            return response()->json(['result'=>'error', 'description'=>'parameter biosid not found']);
+        //デバイスIDパラメーターが渡されていない場合は、エラーとして返す
+        if(empty($deviceid)){
+            return response()->json(['result'=>'fail', 'code' => '103', 'description'=>'デバイスIDパラメーターが見つかりません。']);
         }
-        if($activatedUser->biosid == $bios){
-            return response()->json(['result'=>'ok', 'description'=>'parameter biosid match', 'user' => $activatedUser]);
-        }else{
-            if(empty($activatedUser->biosid)){
-                $activatedUser->biosid = $bios;
-                ActivatedUser::where('serialid', $serial)->update(['biosid' => $bios]);
-                return response()->json(['result'=>'ok', 'description'=>'parameter biosid saved', 'user' => $activatedUser]);
-            }
-            return response()->json(['result'=>'error', 'description'=>'biosid not match']);
+        //デバイスIDが一致した場合は認証OKとする
+        if($activatedUser->deviceid == $deviceid){
+            return response()->json(['result'=>'success', 'code' => '001', 'description'=>'シリアルキーとデバイスIDが一致しました。', 'user' => $activatedUser]);
         }
+        //デバイスIDがDBに保存されていない状態は、認証するPCがシリアルに関連付けられていない場合となる。
+        //この場合は、デバイスIDをシリアルキーに紐づけ、認証OKとする
+        if(empty($activatedUser->deviceid)){
+            $activatedUser->deviceid = $deviceid;
+            ActivatedUser::where('serialid', $serial)->update(['deviceid' => $deviceid]);
+            return response()->json(['result'=>'success', 'code' => '002', 'description'=>'デバイスIDをシリアルキーに新規関連付けしました。', 'user' => $activatedUser]);
+        }
+        //デバイスIDがDBに登録されているものと一致しない場合は、別PCから実行されている可能性があるため、エラーとして返す
+        return response()->json(['result'=>'fail', 'code' => '104', 'description'=>'デバイスIDが一致しません。']);
     }
 }

@@ -5,16 +5,46 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Commons\CsvDownloader;
 use App\ActivatedUser;
-
-//CSVダウンロードクラス
+use Laracsv\Export;
+use League\Csv\Reader;
+/**
+ * CSVダウンロードを行う
+ */
 class DownloadCsvController extends Controller
 {
-    //Serial一覧をCSV出力する
-    public function index(Request $request){
-        $csv = new CSVDownloader;
+    /**
+     * シリアルキーCSVを出力する
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function downloadseriallistcsv(Request $request){
+
         $activatedUsers = ActivatedUser::all();
-        $activatedUsers = $activatedUsers->toArray();
-        $header = ['serialid','name','email','biosid','ban','created_at','updated_at'];
-        return $csv->download($activatedUsers, $header, 'serial-list.csv');
+
+        $csvExporter = new Export();
+
+        $csvExporter->beforeEach(function ($user) {
+            $user->created_at = $user->created_at->format('Y-m-d H:i:s');
+            $user->updated_at = $user->updated_at->format('Y-m-d H:i:s');
+        });
+
+        $csvExporter->build($activatedUsers, [
+            'serialid' => 'シリアルキー',
+            'name' => 'ユーザー名',
+            'email' => 'メールアドレス',
+            'deviceid' => 'デバイスID',
+            'ban' => '削除済','created_at' => '登録日','updated_at' => '更新日',
+        ]);
+
+        $csvReader = $csvExporter->getReader();
+
+        $csvReader->setOutputBOM(Reader::BOM_UTF8);
+
+        $filename = 'serial-list.csv';
+
+        return response((string) $csvReader)
+            ->header('Content-Type', 'text/csv; charset=shift_jis')
+            ->header('Content-Disposition', 'attachment; filename="'.$filename.'"');
     }
 }

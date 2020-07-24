@@ -14,10 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'LoginController@index');
-Route::post('/login', 'LoginController@index');
-Route::post('/logout', 'LoginController@logout');
-Route::post('/menu', 'MenuController@index');
-Route::get('/downloadcsv', 'DownloadCsvController@index');
-Route::post('/genserial', 'GenSerialController@index');
-Route::post('/delserial', 'DelSerialController@index');
+Route::post('/login', 'LoginController@login');
+Route::get('/logout', 'LoginController@logout');
+
+Route::get('/menu', 'MenuController@index');
+
+Route::get('/downloadseriallistcsv', 'DownloadCsvController@downloadseriallistcsv');
+Route::get('/createserialcsvdownload', 'DownloadCsvController@downloadcreatedseriallistcsv');
+
+Route::get('/genserial', 'GenSerialController@index');
+Route::post('/createserial', 'GenSerialController@create');
+
+Route::get('/delserial', 'DelSerialController@index');
+Route::post('/deleteserial', 'DelSerialController@delete');
+Route::post('/searchserial', 'DelSerialController@search');
+
 Route::get('/activate', 'ActivateController@activate');

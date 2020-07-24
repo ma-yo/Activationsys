@@ -1,6 +1,7 @@
 @extends('layout.common')
 @section('title', 'アクティベーションシステム - メニュー')
 @section('css')
+<link href="css/common.css" rel="stylesheet" type="text/css">
 <link href="css/menu-index.css" rel="stylesheet" type="text/css">
 @endsection
 
@@ -11,17 +12,37 @@
 @section('content')
 
 <div id="menu">
-    <form id="menu-form" class="form" action="{{url('/menu')}}" method="post">
+    <form id="menu-form" class="form" action="{{ url('/menu') }}" method="get">
         @csrf
-        <input type="hidden" id="menu-type" name="menu-type" value=""/>
         <div class="form-group">
-            <label for="lic-title" class="text-info">ライセンス管理</label><br>
+            <label for="lic-title" class="h4 text-info">ライセンス管理</label><br>
             <div class="container border border-info p-3 rounded">
-                <input type="submit" id="gen-serial" name="gen-serial" class="btn btn-info btn-md" value="シリアル生成">
-                <input type="submit" id="del-serial" name="del-serial" class="btn btn-warning btn-md" value="シリアル削除">
-                <input type="submit" id="download-serial" name="download-serial" class="btn btn-info btn-md" value="CSV出力">
+                <button type="button" id="genserial" name="genserial" class="btn btn-info btn-lg">シリアル生成</button>
+                <button type="button" id="delserial" name="delserial" class="btn btn-warning btn-lg">シリアル削除</button>
+                <button type="button" id="downloadserial" name="downloadserial"
+                    class="btn btn-info btn-lg">CSV出力</button>
             </div>
         </div>
     </form>
+
+    <!-- CSV出力用モーダル -->
+    <div class="modal fade" id="progressModal" tabindex="-1" role="dialog" aria-labelledby="progressModalTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-info text-white">
+                    <h5 class="modal-title" id="progressModalTitle">CSVファイルの出力中...</h5>
+                </div>
+                <div class="modal-body form-inline mx-auto">
+                    <div>しばらくお待ちください。</div>
+                    <div class="spinner-border text-primary" style="width: 2rem; height: 2rem;" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
+
 @endsection

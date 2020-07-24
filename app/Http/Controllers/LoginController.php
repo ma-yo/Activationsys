@@ -5,71 +5,98 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Commons\MessageUtil;
+use Illuminate\Support\Facades\Validator;
+/**
+ * ログイン認証コントローラー
+ */
 class LoginController extends Controller
 {
+
+    /**
+     * ログイン画面を表示する
+     *
+     * @param Request $request
+     * @return void
+     */
     public function index (Request $request)
     {
         
         //Sessionをクリアする
         $this->clearSession($request);
+        //csrf対策
         $request->session()->regenerateToken();
-        
-        //処理切り分け用コンテンツ
-        $content = $request->input('content');
-        if(!isset($content)){
-            return view('login/index', $this->response);
-        }
 
-        //処理切り分け
-        switch($content){
-            case "login":
-                return $this->login($request);
-            case "logout":
-                return $this->logout($request);
-        }
-
-        //処理が存在しない場合
-        return $this->getNoPageFound($request);
+        return view('login/index', $this->response);
 
     }
-    //ログインを試みます
-    private function login (Request $request)
+
+    /**
+     * ログイン認証を実行する
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function login (Request $request)
     {
         
+        //Sessionをクリアする
+        $this->clearSession($request);
+        //csrf対策
+        $request->session()->regenerateToken();
+
         $username = $request->input('login-username');
         $password = $request->input('login-password');
-        
+        $validator = Validator::make($request->all(), [
+            'login-username'=>'required',
+            'login-password'=>'required'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+
+        //ユーザーテーブルを検索する
         $user = User::where('name', $username)
         ->where('password', $password)
         ->first();
 
-
         if($user != null){
-
+            //ログイン成功したのでメニュー画面へ遷移
             $request->session()->put('username', $username);
 
-            $this->response['message'] = MessageUtil::MSG_INF_0001;
-            $this->response['messageType'] = MessageUtil::TYPE_INFO;
-            $this->response['username'] = $user->name;
-
+            $this->response['commons']['message'] = MessageUtil::MSG_INF_0001;
+            $this->response['commons']['messageType'] = MessageUtil::TYPE_INFO;
+            $this->response['commons']['username'] = $user->name;
+            
             return view('menu/index', $this->response);
         }else{
 
-            $this->response['message'] = MessageUtil::MSG_ERR_0002;
-            $this->response['messageType'] = MessageUtil::TYPE_DANGER;
-
-            return view('login/index', $this->response);
+            $this->response['commons']['message'] = MessageUtil::MSG_ERR_0002;
+            $this->response['commons']['messageType'] = MessageUtil::TYPE_DANGER;
+            //ログイン失敗したのでログイン画面に戻る
+            return view('menu/index', $this->response);
         }
+
     }
-    //ログアウトします
+
+    /**
+     * ログアウトします
+     *
+     * @param Request $request
+     * @return void
+     */
     public function logout (Request $request)
     {
         //Sessionをクリアする
         $this->clearSession($request);
+        //csrf対策
         $request->session()->regenerateToken();
 
-        $this->response['message'] = MessageUtil::MSG_INF_0002;
-        $this->response['messageType'] = MessageUtil::TYPE_INFO;
+        $this->response['commons']['message'] = MessageUtil::MSG_INF_0002;
+        $this->response['commons']['messageType'] = MessageUtil::TYPE_INFO;
+        //ログイン画面に戻ります
         return view('login/index', $this->response);
     }
 }
