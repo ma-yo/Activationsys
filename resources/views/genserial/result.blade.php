@@ -18,8 +18,8 @@
         @csrf
         <div class="form-group form-inline">
             <span class="mr-auto"></span>
-            <button type="button" id="menu" name="menu" class="btn btn-secondary btn-md">メニューに戻る</button>
             <button type="button" id="csvdownload" name="csvdownload" class="btn btn-info btn-md ml-2">CSV出力</button>
+            <button type="button" id="menu" name="menu" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>
         </div>
     </form>
 

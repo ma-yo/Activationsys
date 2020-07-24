@@ -50,8 +50,8 @@
           選択したシリアルキーを登録しますか？
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
           <button type="button" id="genserial" name="genserial" class="btn btn-info">シリアル登録</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
         </div>
       </div>
     </div>

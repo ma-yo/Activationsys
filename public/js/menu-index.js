@@ -22,7 +22,10 @@ $(function () {
      */
     $('#downloadserial').on('click', function () {
 
-        $('#progressModal').modal();
+        $('#progressModal').modal({
+            backdrop: 'static',
+            keyboard: false
+        });
 
         //非同期処理にてCSVをダウンロードする
         $.ajax({

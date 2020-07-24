@@ -78,8 +78,8 @@
           選択したシリアルキーを削除しますか？
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
           <button type="button" id="delserial" name="delserial" class="btn btn-danger">シリアル削除</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
         </div>
       </div>
     </div>
