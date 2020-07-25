@@ -11,8 +11,8 @@
 @section('content')
 
 <div id="createuser-result">
-    <p class="h4 text-dark">新規ユーザー登録を行いました。</p>
-    <p class="h4 text-danger">※ユーザー名とパスワードを必ず控えてください。初回ログイン後はパスワードを変更してください。</p>
+    <p class="h2 text-dark">新規ユーザー登録を行いました。</p>
+    <p class="h2 text-danger">※ユーザー名とパスワードを必ず控えてください。初回ログイン後はパスワードを変更してください。</p>
 
     <form id="menuback-form" class="form" action="/menu" method="get">
         @csrf

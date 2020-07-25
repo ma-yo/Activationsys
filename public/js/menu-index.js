@@ -72,6 +72,13 @@ $(function () {
                 }).done(function (response) {
 
                     let rt = response;
+
+                    if(rt.match(/\n/g).length == 1){
+                        Common.closeDialog('progress');
+                        Common.showDialog('warning', 'info', '一覧CSV出力', '出力可能なデータは存在しませんでした。',null, null);
+                        return;
+                    }
+
                     strRt = Encoding.stringToCode(rt);
                     arrRt = Encoding.convert(strRt, "sjis", "unicode");
                     u8a = new Uint8Array(arrRt);
@@ -84,9 +91,9 @@ $(function () {
                     a.download = Common.formatDate(new Date(), "YYYY-MM-DD-hh-mm-ss") + '-serial-list.csv';
                     a.click();
 
-                    Common.closeDialog(null);
+                    Common.closeDialog('progress');
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    Common.closeDialog(null);
+                    Common.closeDialog('progress');
                     alert('ファイルの取得に失敗しました。');
                     console.log("ajax通信に失敗しました")
                     console.log(jqXHR.status);
@@ -108,6 +115,13 @@ $(function () {
                 }).done(function (response) {
 
                     let rt = response;
+
+                    if(rt.match(/\n/g).length == 1){
+                        Common.closeDialog('progress');
+                        Common.showDialog('warning', 'info', '一覧CSV出力', '出力可能なデータは存在しませんでした。',null, null);
+                        return;
+                    }
+
                     strRt = Encoding.stringToCode(rt);
                     arrRt = Encoding.convert(strRt, "sjis", "unicode");
                     u8a = new Uint8Array(arrRt);
@@ -120,9 +134,9 @@ $(function () {
                     a.download = Common.formatDate(new Date(), "YYYY-MM-DD-hh-mm-ss") + '-user-list.csv';
                     a.click();
 
-                    Common.closeDialog(null);
+                    Common.closeDialog('progress');
                 }).fail(function (jqXHR, textStatus, errorThrown) {
-                    Common.closeDialog(null);
+                    Common.closeDialog('progress');
                     alert('ファイルの取得に失敗しました。');
                     console.log("ajax通信に失敗しました")
                     console.log(jqXHR.status);
