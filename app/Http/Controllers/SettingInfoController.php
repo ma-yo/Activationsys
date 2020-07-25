@@ -76,12 +76,11 @@ class SettingInfoController extends Controller
         SettingInfo::where('settingid', '0002')->update(['value1' => $maxsearchrow]);
         SettingInfo::where('settingid', '0003')->update(['value1' => $maxissued]);
 
+        $settinginfos = SettingInfo::all();
         $this->response['commons']['subtitle'] = ' -> メニュー -> 設定値編集';
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0006;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_SUCCESS;
-        $this->response['datas']['serialreset'] = $serialreset;
-        $this->response['datas']['maxsearchrow'] = $maxsearchrow;
-        $this->response['datas']['maxissued'] = $maxissued;
-        return view('settinginfo/index', $this->response);
+        $this->response['datas']['settinginfos'] = $settinginfos;
+        return view('settinginfo/result', $this->response);
     }
 }
