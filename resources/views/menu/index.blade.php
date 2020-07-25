@@ -14,16 +14,16 @@
     <form id="menu-form" class="form" action="{{ url('/menu') }}" method="get">
         @csrf
         <div class="form-group">
-            <label for="lictitle-label" class="h2 text-info">ライセンス管理メニュー</label><br>
-            <div class="container border border-info p-3 rounded">
-                <button type="button" id="genserial-button" name="genserial-button" class="btn btn-info">シリアル生成</button>
-                <button type="button" id="delserial-button" name="delserial-button" class="btn btn-info">シリアル削除</button>
-                <button type="button" id="serialunlock-button" name="serialunlock-button" class="btn btn-info">シリアル凍結リセット</button>
+            <label for="lictitle-label" class="h2 text-dark">ライセンス管理メニュー</label><br>
+            <div class="container border border-dark p-3 rounded">
+                <button type="button" id="genserial-button" name="genserial-button" class="btn btn-dark">シリアル生成</button>
+                <button type="button" id="delserial-button" name="delserial-button" class="btn btn-dark">シリアル削除</button>
+                <button type="button" id="serialunlock-button" name="serialunlock-button" class="btn btn-dark">シリアル凍結リセット</button>
             </div>
         </div>
         <div class="form-group">
-            <label for="iotitle-label" class="h2 text-primary">帳票・ファイル出力メニュー</label><br>
-            <div class="container border border-primary p-3 rounded">
+            <label for="iotitle-label" class="h2 text-dark">帳票・ファイル出力メニュー</label><br>
+            <div class="container border border-dark p-3 rounded">
                 <button type="button" id="downloadserial-button" name="downloadserial-button" class="btn btn-primary">登録情報CSV出力</button>
             </div>
         </div>
