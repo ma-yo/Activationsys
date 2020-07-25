@@ -193,6 +193,11 @@ class EditUserController extends Controller
             User::where('name', $changeuser)->update(['password'=>$changepassword, 'authority'=>$changeauthority, 'ban'=>$changeban]);
         });
 
+        //Sessionの権限を更新する
+        if($changeuser == $username){
+            $request->session()->put('authority', $changeauthority);
+        }
+
         $savedUser = User::where('name', $changeuser)->first();
         $this->response['commons']['subtitle'] = ' -> メニュー -> ユーザー情報編集';
         $this->response['datas'] = ['savedUser' => $savedUser];
