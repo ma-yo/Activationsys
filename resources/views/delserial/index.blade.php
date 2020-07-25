@@ -16,7 +16,7 @@
     @csrf
     <div class="form border border-info p-3 rounded">
         <div class="form-group form-inline">
-            <input type="text" id="searchword" name="searchword" class="form-control" value="" style="width:400px;"
+        <input type="text" id="searchword" name="searchword" class="form-control" value="{{$datas['searchword']}}" style="width:400px;"
                 placeholder="名称やE-mailを入力してください。"/>
             <button type="button" id="searchserial-button" name="searchserial-button" class="btn btn-primary btn-md ml-2 mr-auto">検索</button>
             @if(!empty($datas['activatedUsers']))

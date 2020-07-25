@@ -138,7 +138,7 @@ class EditUserController extends Controller
 
         $validator = Validator::make($request->all(), [
             'userlist'=>'required|max:256',
-            'password'=>['required|max:256', new PasswordComplexity],
+            'password'=>['required', 'max:256', new PasswordComplexity],
             'authority' => 'in:1,2',
             'ban' => 'in:0,1'
         ]);

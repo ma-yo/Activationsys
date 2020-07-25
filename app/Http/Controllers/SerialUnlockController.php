@@ -29,6 +29,7 @@ class SerialUnlockController extends Controller
 
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー凍結解除';
         $this->response['datas'] = ['activatedUsers' => $activatedUsers];
+        $this->response['datas'] = ['searchword' => ''];
         return view('serialunlock/index', $this->response);
     }
     /**
@@ -45,6 +46,8 @@ class SerialUnlockController extends Controller
             return view('login/index', $this->response);
         }
 
+        //検索文字列
+        $word = $request->input('searchword');
         $unlockserials = $request->input('unlock-select');
 
         DB::transaction(function() use($unlockserials){
@@ -58,6 +61,7 @@ class SerialUnlockController extends Controller
         
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー凍結解除';
         $this->response['datas'] = ['activatedUsers' => $activatedUsers];
+        $this->response['datas'] = ['searchword' => $word];
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0007;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_INFO;
 
@@ -99,6 +103,7 @@ class SerialUnlockController extends Controller
         }
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー凍結解除';
         $this->response['datas'] = ['activatedUsers' => $activatedUsers];
+        $this->response['datas'] = ['searchword' => $word];
         //データ件数をメッセージに出力する
         $count = count($activatedUsers);
         if($count > 0){
