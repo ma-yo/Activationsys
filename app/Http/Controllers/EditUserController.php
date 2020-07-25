@@ -101,7 +101,7 @@ class EditUserController extends Controller
         $user->password = $changepassword;
         $user->authority = $changeauthority;
         $user->ban = $changeban;
-        
+
         $passwordUtil = new PasswordUtil;
 
         $this->response['commons']['subtitle'] = ' -> メニュー -> ユーザー情報編集';

@@ -17,6 +17,7 @@ $(function(){
         Common.showDialog('info', 'progress', '強力なパスワードを生成中...','しばらくお待ちください。', null, null);
         $('#userlist').attr('disabled',false);
         $('#authority').attr('disabled',false);
+        $('#ban').attr('disabled',false);
         $(":button").css('pointer-events','none');
         $('#edituser-form').attr("method","get");
         $('#edituser-form').attr("action","/genpasswordedituser");
@@ -74,6 +75,7 @@ $(function(){
         Common.showDialog('info', 'progress', 'ユーザー情報変更中...','しばらくお待ちください。', null, null);
         $('#userlist').attr('disabled',false);
         $('#authority').attr('disabled',false);
+        $('#ban').attr('disabled',false);
         $(":button").css('pointer-events','none');
         $('#edituser-form').attr("method","post");
         $('#edituser-form').attr("action","/updateedituser");
