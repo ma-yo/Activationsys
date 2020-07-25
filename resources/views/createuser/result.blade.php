@@ -14,16 +14,14 @@
     <p class="h2 text-primary">新規ユーザー登録を行いました。</p>
     <p class="h2 text-danger">※ユーザー名とパスワードを必ず控えてください。初回ログイン後はパスワードを変更してください。</p>
 
-    <form id="menuback-form" class="form" action="/menu" method="get">
+    <form id="menuback-form" class="form border border-primary rounded p-3 mb-3" action="/menu" method="get">
         @csrf
         <div class="form-group form-inline">
             <span class="mr-auto"></span>
             <button type="button" id="csvdownload-button" name="csvdownload-button" class="btn btn-primary btn-md ml-2">CSV出力</button>
             <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>
         </div>
-    </form>
 
-    <div class="border border-primary rounded p-3 mb-3">
         <table id="resultcreateuser-table" class="table table-hover">
             <thead>
                 <tr>
@@ -53,7 +51,7 @@
                 </tbody>
             @endif
         </table>
-    </div>
+    </form>
 
     <a style="display: none" id="csvdownload-link" href="#" download=""></a>
 </div>

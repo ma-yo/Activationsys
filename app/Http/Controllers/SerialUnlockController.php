@@ -46,10 +46,10 @@ class SerialUnlockController extends Controller
         }
 
         //検索文字列
-        $word = $request->input('searchword');
         $unlockserials = $request->input('unlock-select');
 
-        DB::transaction(function() use($unlockserials){
+        $activatedUsers = DB::transaction(function() use($unlockserials){
+            $unlockUser = [];
             foreach($unlockserials as $unlockserial){
                 //banを解除、デバイス更新回数も1に設定
                 $user = ActivatedUser::where('serialid', $unlockserial)->first();
@@ -58,17 +58,17 @@ class SerialUnlockController extends Controller
                 }else{
                     ActivatedUser::where('serialid', $unlockserial)->update(['ban' => null, 'devicechangecount' => 1]);
                 }
+                $unlockUser[] = ActivatedUser::where('serialid', $unlockserial)->first();
             }
+            return $unlockUser;
         });
 
-        $activatedUsers =  $this->getLockUserAll();
-        
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー凍結解除';
-        $this->response['datas'] = ['activatedUsers' => $activatedUsers, 'searchword' => $word];
+        $this->response['datas'] = ['activatedUsers' => $activatedUsers];
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0007;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_INFO;
 
-        return view('serialunlock/index', $this->response);
+        return view('serialunlock/result', $this->response);
     }
     /**
      * シリアルを検索する

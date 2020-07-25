@@ -50,23 +50,24 @@ class DelSerialController extends Controller
         }
 
         //検索文字列
-        $word = $request->input('searchword');
         $delserials = $request->input('del-select');
 
-        DB::transaction(function() use($delserials){
+        $activatedUsers = DB::transaction(function() use($delserials){
+            $delUsers = [];
             foreach($delserials as $delserial){
                 //banを1に更新し削除フラグを設定
                 ActivatedUser::where('serialid', $delserial)->update(['ban' => '1']);
+                $delUsers[] = ActivatedUser::where('serialid', $delserial)->first();
             }
+            return $delUsers;
         });
 
-        $activatedUsers = ActivatedUser::whereNull('ban')->take($this->getMaxSearchRow())->orderBy('devicechangecount', 'desc')->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー削除';
-        $this->response['datas'] = ['activatedUsers' => $activatedUsers, 'searchword' => $word];
+        $this->response['datas'] = ['activatedUsers' => $activatedUsers];
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0003;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_INFO;
 
-        return view('delserial/index', $this->response);
+        return view('delserial/result', $this->response);
     }
     /**
      * シリアルを検索する

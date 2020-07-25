@@ -1,18 +1,17 @@
 @extends('layout.common')
-@section('title', 'アクティベーションシステム - シリアル作成成功')
+@section('title', 'アクティベーションシステム - シリアルキーアンロック成功')
 @section('css')
-<link href="css/genserial-result.css?{{$commons['systemdate']}}" rel="stylesheet" type="text/css">
+<link href="css/serialunlock-result.css?{{$commons['systemdate']}}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('js')
-<script type="text/javascript" src="js/genserial-result.js?{{$commons['systemdate']}}"></script>
+<script type="text/javascript" src="js/serialunlock-result.js?{{$commons['systemdate']}}"></script>
 @endsection
 
 @section('content')
 
-<div id="genserial-result">
-    <p class="h2 text-primary">下記シリアルを認証ユーザーへ通知してください。</p>
-
+<div id="serialunlock-result">
+    <p class="h2 text-primary">シリアルキーのアンロックを行いました。</p>
     <form id="menuback-form" class="form border border-primary rounded p-3 mb-3" action="/menu" method="get">
         @csrf
         <div class="form-group form-inline">
@@ -20,13 +19,15 @@
             <button type="button" id="csvdownload-button" name="csvdownload-button" class="btn btn-primary btn-md ml-2">CSV出力</button>
             <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>
         </div>
-        <table id="resultserial-table" class="table table-hover">
+
+        <table id="resultunlockserial-table" class="table table-hover">
             <thead>
                 <tr>
                     <th>シリアルキー</th>
                     <th>ユーザー名</th>
                     <th>メールアドレス</th>
                     <th>登録日時</th>
+                    <th>更新日時</th>
                 </tr>
             </thead>
             @if(!empty($datas['activatedUsers']))
@@ -37,6 +38,7 @@
                             <td><small>{{ $user->name }}</small></td>
                             <td><small>{{ $user->email }}</small></td>
                             <td><small>{{ $user->created_at }}</small></td>
+                            <td><small>{{ $user->updated_at }}</small></td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -46,6 +48,5 @@
 
     <a style="display: none" id="csvdownload-link" href="#" download=""></a>
 </div>
-
 
 @endsection
