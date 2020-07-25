@@ -18,7 +18,7 @@
   <![endif]-->
 </head>
 <body>
-<nav class="navbar navbar-expand-sm navbar-light bg-info">
+<nav class="navbar navbar-expand-sm navbar-light bg-dark">
     <span class="navbar-brand mb-0 h1 text-white">Activation System</span>
     <span class="mb-0 h6 text-white mr-auto">@if(isset($commons['subtitle'])) {{$commons['subtitle']}} @endif</span>
     

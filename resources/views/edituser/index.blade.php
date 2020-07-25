@@ -10,7 +10,7 @@
 
 @section('content')
 
-<p class="text-dark h2">編集情報を入力してください。</p>
+<p class="text-info h2">編集情報を入力してください。</p>
 <form id="edituser-form" class="form border border-info p-3 rounded" action="/" method="post">
     @csrf
     <div class="form-group form-inline">
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group">
-        <label class="form-content text-dark">ユーザー名</label>
+        <label class="form-content text-info">ユーザー名</label>
         <select id="userlist" name="userlist" class="form-control" @if($commons['authority']!="1") disabled  @endif>
             @if($commons['authority']=="1")
             @foreach($datas['allusers'] as $user)
@@ -32,7 +32,7 @@
         </select>
     </div>
     <div class="form-group">
-        <label class="form-content text-dark">パスワード</label>
+        <label class="form-content text-info">パスワード</label>
         <div class="form-inline">
             <span id="genpassword" name="genpassword" class="form-control">{{$datas['genpassword']}}</span>
             <button type="button" id="genpassword-button" name="genpassword-button" class="btn btn-info btn-md ml-2">パスワードを作成</button>

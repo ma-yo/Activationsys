@@ -11,7 +11,7 @@
 @section('content')
 
 <div id="edituser-result">
-    <p class="h2 text-dark">ユーザー情報を変更しました。</p>
+    <p class="h2 text-primary">ユーザー情報を変更しました。</p>
 
     <form id="menuback-form" class="form" action="/menu" method="get">
         @csrf

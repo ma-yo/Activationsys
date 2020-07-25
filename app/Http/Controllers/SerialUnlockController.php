@@ -28,8 +28,7 @@ class SerialUnlockController extends Controller
         $activatedUsers =  $this->getLockUserAll();
 
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー凍結解除';
-        $this->response['datas'] = ['activatedUsers' => $activatedUsers];
-        $this->response['datas'] = ['searchword' => ''];
+        $this->response['datas'] = ['activatedUsers' => $activatedUsers, 'searchword' => ''];
         return view('serialunlock/index', $this->response);
     }
     /**
@@ -53,15 +52,19 @@ class SerialUnlockController extends Controller
         DB::transaction(function() use($unlockserials){
             foreach($unlockserials as $unlockserial){
                 //banを解除、デバイス更新回数も1に設定
-                ActivatedUser::where('serialid', $unlockserial)->update(['ban' => null, 'devicechangecount' => 1]);
+                $user = ActivatedUser::where('serialid', $unlockserial)->first();
+                if($user->devicechangecount == 0){
+                    ActivatedUser::where('serialid', $unlockserial)->update(['ban' => null]);
+                }else{
+                    ActivatedUser::where('serialid', $unlockserial)->update(['ban' => null, 'devicechangecount' => 1]);
+                }
             }
         });
 
         $activatedUsers =  $this->getLockUserAll();
         
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー凍結解除';
-        $this->response['datas'] = ['activatedUsers' => $activatedUsers];
-        $this->response['datas'] = ['searchword' => $word];
+        $this->response['datas'] = ['activatedUsers' => $activatedUsers, 'searchword' => $word];
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0007;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_INFO;
 
@@ -102,8 +105,7 @@ class SerialUnlockController extends Controller
             })->take($this->getMaxSearchRow())->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
         }
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー凍結解除';
-        $this->response['datas'] = ['activatedUsers' => $activatedUsers];
-        $this->response['datas'] = ['searchword' => $word];
+        $this->response['datas'] = ['activatedUsers' => $activatedUsers, 'searchword' => $word];
         //データ件数をメッセージに出力する
         $count = count($activatedUsers);
         if($count > 0){

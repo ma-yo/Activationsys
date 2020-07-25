@@ -32,8 +32,7 @@ class DelSerialController extends Controller
         $activatedUsers = ActivatedUser::whereNull('ban')->take($this->getMaxSearchRow())->orderBy('devicechangecount', 'desc')->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
 
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー削除';
-        $this->response['datas'] = ['activatedUsers' => $activatedUsers];
-        $this->response['datas'] = ['searchword' => ''];
+        $this->response['datas'] = ['activatedUsers' => $activatedUsers, 'searchword' => ''];
         return view('delserial/index', $this->response);
     }
     /**
@@ -63,8 +62,7 @@ class DelSerialController extends Controller
 
         $activatedUsers = ActivatedUser::whereNull('ban')->take($this->getMaxSearchRow())->orderBy('devicechangecount', 'desc')->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー削除';
-        $this->response['datas'] = ['activatedUsers' => $activatedUsers];
-        $this->response['datas'] = ['searchword' => $word];
+        $this->response['datas'] = ['activatedUsers' => $activatedUsers, 'searchword' => $word];
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0003;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_INFO;
 
@@ -100,8 +98,7 @@ class DelSerialController extends Controller
             })->whereNull('ban')->take(100)->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
         }
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー削除';
-        $this->response['datas'] = ['activatedUsers' => $activatedUsers];
-        $this->response['datas'] = ['searchword' => $word];
+        $this->response['datas'] = ['activatedUsers' => $activatedUsers, 'searchword' => $word];
         //データ件数をメッセージに出力する
         $count = count($activatedUsers);
         if($count > 0){
