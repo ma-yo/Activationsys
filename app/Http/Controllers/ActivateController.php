@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ActivatedUser;
-
+use App\SettingInfo;
 /**
  * アクティベーションクラス
  */
@@ -34,6 +34,11 @@ class ActivateController extends Controller
         //デバイスIDパラメーターが渡されていない場合は、エラーとして返す
         if(empty($deviceid)){
             return response()->json(['result'=>'fail', 'code' => '103','devicechangecount'=> '',  'description'=>'デバイスIDパラメーターが見つかりません。']);
+        }
+
+        $serialreset = SettingInfo::where('settingid', '0001')->first()->value1;
+        if($activatedUser->devicechangecount > $serialreset){
+            return response()->json(['result'=>'fail', 'code' => '105','devicechangecount'=> $activatedUser->devicechangecount,  'description'=>'デバイス認証回数制限を超えています。シリアルキーはロックされました。']);
         }
         //デバイスIDが一致した場合は認証OKとする
         if($activatedUser->deviceid == $deviceid){
@@ -77,8 +82,10 @@ class ActivateController extends Controller
         }
         //デバイスIDが一致した場合は認証OKとする
         if($activatedUser->deviceid == $deviceid){
+            $serialreset = SettingInfo::where('settingid', '0001')->first()->value1;
+            $rimit = $serialreset - ($activatedUser->devicechangecount - 1);
             ActivatedUser::where('serialid', $serial)->update(['deviceid' => null]);
-            return response()->json(['result'=>'success', 'code' => '001','devicechangecount'=> $activatedUser->devicechangecount, 'description'=>'シリアルキーとデバイスIDが一致したため、認証を解除しました。', 'user' => $activatedUser]);
+            return response()->json(['result'=>'success', 'code' => '001','devicechangecount'=> $activatedUser->devicechangecount, 'description'=>'認証を解除しました。再認証可能回数は残り' . $rimit  . '回です。' , 'user' => $activatedUser]);
         }
         //デバイスIDがDBに保存されていない状態は、認証するPCがシリアルに関連付けられていない場合となる。
         //この場合は、デバイスIDをシリアルキーに紐づけ、認証OKとする

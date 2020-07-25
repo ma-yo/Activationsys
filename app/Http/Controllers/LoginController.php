@@ -60,15 +60,18 @@ class LoginController extends Controller
         //ユーザーテーブルを検索する
         $user = User::where('name', $username)
         ->where('password', $password)
+        ->where('ban', 0)
         ->first();
 
         if($user != null){
             //ログイン成功したのでメニュー画面へ遷移
             $request->session()->put('username', $username);
-
+            $request->session()->put('authority', $user->authority);
+            $this->response['commons']['subtitle'] = ' -> メニュー';
             $this->response['commons']['message'] = MessageUtil::MSG_INF_0001;
             $this->response['commons']['messageType'] = MessageUtil::TYPE_INFO;
             $this->response['commons']['username'] = $user->name;
+            $this->response['commons']['authority'] = $user->authority;
             
             return view('menu/index', $this->response);
         }else{
@@ -76,7 +79,7 @@ class LoginController extends Controller
             $this->response['commons']['message'] = MessageUtil::MSG_ERR_0002;
             $this->response['commons']['messageType'] = MessageUtil::TYPE_DANGER;
             //ログイン失敗したのでログイン画面に戻る
-            return view('menu/index', $this->response);
+            return view('login/index', $this->response);
         }
 
     }

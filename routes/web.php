@@ -20,7 +20,9 @@ Route::get('/logout', 'LoginController@logout');
 Route::get('/menu', 'MenuController@index');
 
 Route::get('/downloadseriallistcsv', 'DownloadCsvController@downloadseriallistcsv');
-Route::get('/createserialcsvdownload', 'DownloadCsvController@downloadcreatedseriallistcsv');
+Route::get('/downloaduserlistcsv', 'DownloadCsvController@downloaduserlistcsv');
+
+
 
 Route::get('/genserial', 'GenSerialController@index');
 Route::post('/createserial', 'GenSerialController@create');
@@ -31,3 +33,25 @@ Route::post('/searchserial', 'DelSerialController@search');
 
 Route::get('/activate', 'ActivateController@activate');
 Route::get('/deactivate', 'ActivateController@deactivate');
+
+Route::get('/settinginfo','SettingInfoController@index');
+Route::post('/updatesettinginfo','SettingInfoController@update');
+
+Route::get('/serialunlock', 'SerialUnlockController@index');
+Route::post('/unlockserial', 'SerialUnlockController@unlock');
+Route::post('/searchlockserial', 'SerialUnlockController@search');
+
+Route::get('/createuser', 'CreateUserController@index');
+Route::post('/usercreate', 'CreateUserController@create');
+
+Route::get('/edituser', 'EditUserController@index');
+Route::get('/changeedituser', 'EditUserController@changeuser');
+Route::get('/genpasswordedituser', 'EditUserController@genpassword');
+
+
+Route::post('/updateedituser', 'EditUserController@update');
+
+
+
+
+

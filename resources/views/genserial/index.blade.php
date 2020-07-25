@@ -1,12 +1,11 @@
 @extends('layout.common')
 @section('title', 'アクティベーションシステム - シリアル作成')
 @section('css')
-<link href="css/common.css" rel="stylesheet" type="text/css">
-<link href="css/genserial-index.css" rel="stylesheet" type="text/css">
+<link href="css/genserial-index.css?{{$commons['systemdate']}}" rel="stylesheet" type="text/css">
 @endsection
 
 @section('js')
-<script type="text/javascript" src="js/genserial-index.js"></script>
+<script type="text/javascript" src="js/genserial-index.js?{{$commons['systemdate']}}"></script>
 @endsection
 
 @section('content')
@@ -16,8 +15,8 @@
     @csrf
     <div class="form-group form-inline">
         <span class="mr-auto"></span>
-        <button type="button" id="modalopen" name="modalopen" class="btn btn-info btn-md">シリアル作成</button>
-        <button type="button" id="menu" name="menu" class="btn btn-secondary btn-md ml-2">戻る</button>
+        <button type="button" id="genserial-button" name="genserial-button" class="btn btn-info btn-md">シリアル作成</button>
+        <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
     </div>
     <div class="form-group">
         <label class="form-content text-dark">ユーザー名</label>
@@ -36,29 +35,4 @@
     </div>
 
 </form>
-
-<div class="modal fade" id="genSerialModal" tabindex="-1" role="dialog" aria-labelledby="genSerialModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header bg-info text-white">
-          <h5 class="modal-title" id="genSerialModalLabel">シリアルキーの登録</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span class="text-white" aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body text-center align-middle">
-          <table>
-            <tr>
-              <td><i class="fas fa-info-circle fa-2x text-info"></i></td>
-              <td class="align-middle"><span class="ml-2">入力した内容にてシリアルキーを登録しますか？</span></td>
-            </tr>
-          </table>
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="genserial" name="genserial" class="btn btn-success">シリアル登録</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
-        </div>
-      </div>
-    </div>
-  </div>
 @endsection

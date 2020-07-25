@@ -3,22 +3,22 @@ $(function () {
     /**
      * メニュー画面に戻る
      */
-    $('#menu').on('click', function () {
+    $('#menuback-button').on('click', function () {
         $(":button").css('pointer-events', 'none');
-        $('#menu-form').attr("action", "/menu");
-        $('#menu-form').attr("method", "get");
-        $('#menu-form').submit();
+        $('#menuback-form').attr("action", "/menu");
+        $('#menuback-form').attr("method", "get");
+        $('#menuback-form').submit();
     });
 
     /**
      * 作成済みシリアルキーの一覧CSVをダウンロードする
      */
-    $('#csvdownload').on('click', function () {
+    $('#csvdownload-button').on('click', function () {
 
         //テーブルの内容をCSVに出力する
         var detailRows = [];
         var headerRows = [];
-        $('#serial-table tr').each(function (i, e) {
+        $('#resultserial-table tr').each(function (i, e) {
             var detailCols = [];
             var headerCols = [];
             if (i === 0) {
@@ -46,10 +46,10 @@ $(function () {
             type: 'text/csv'
         });
         var url = (window.URL || window.webkitURL).createObjectURL(blobData);
-        var downloadLink = document.getElementById('downloader');
+        var downloadLink = document.getElementById('csvdownload-link');
         downloadLink.download = Common.formatDate(new Date(), "YYYY-MM-DD-hh-mm-ss") + '-created-serial-list.csv';
         downloadLink.href = url;
-        $('#downloader')[0].click();
+        $('#csvdownload-link')[0].click();
 
     });
 });

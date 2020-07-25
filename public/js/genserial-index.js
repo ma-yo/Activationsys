@@ -2,9 +2,10 @@ $(function(){
     /**
      * シリアルキーを発行する
      */
-    $('#genserial').on('click', function(){
+    $('#okcancel-modal-ok-button').on('click', function(){
+        Common.closeDialog('okcancel');
+        Common.showDialog('info', 'progress', 'シリアル発行中...','しばらくお待ちください。', null, null);
         $(":button").css('pointer-events','none');
-        $('#genSerialModal').modal('hide');
         $('#genserial-form').attr("method","post");
         $('#genserial-form').attr("action","/createserial");
         $('#genserial-form').submit();
@@ -12,13 +13,13 @@ $(function(){
     /**
      * モーダルダイアログを表示する
      */
-    $('#modalopen').on('click', function(){
-        $('#genSerialModal').modal();
+    $('#genserial-button').on('click', function(){
+        Common.showDialog('info', 'okcancel', 'シリアルキーの登録', '入力した内容にてシリアルキーを登録しますか？','シリアル登録', null);
     });
     /**
      * メニュー画面に戻る
      */
-    $('#menu').on('click', function(){
+    $('#menuback-button').on('click', function(){
         $(":button").css('pointer-events','none');
         $('#genserial-form').attr("method","get");
         $('#genserial-form').attr("action","/menu");

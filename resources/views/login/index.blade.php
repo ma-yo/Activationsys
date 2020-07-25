@@ -1,11 +1,10 @@
 @extends('layout.common')
 @section('title', 'アクティベーションシステム - ログイン')
 @section('css')
-<link href="css/common.css" rel="stylesheet" type="text/css">
-<link href="css/login-index.css" rel="stylesheet" type="text/css">
+<link href="css/login-index.css?{{$commons['systemdate']}}" rel="stylesheet" type="text/css">
 @endsection
 @section('js')
-<script type="text/javascript" src="js/login-index.js"></script>
+<script type="text/javascript" src="js/login-index.js?{{$commons['systemdate']}}"></script>
 @endsection
 @section('content')
 <div id="login">

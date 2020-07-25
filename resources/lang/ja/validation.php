@@ -147,9 +147,15 @@ return [
     'attributes' => [
         'email' => 'メールアドレス',
         'username' => 'ユーザー名',
+        'userlist' => 'ユーザー名',
+        'ban' => '削除設定',
+        'authority' => '権限',
         'issued-quantity' => '発行数量',
         'login-username' => 'ユーザーID',
         'login-password' => 'パスワード',
+        'serialreset-quantity' => 'シリアルキー関連付け最大回数',
+        'maxsearchrow-quantity' => '検索結果最大表示行数',
+        'searchword' => '検索文字列',
+        'genpassword' => '生成されたパスワード'
     ],
-
 ];

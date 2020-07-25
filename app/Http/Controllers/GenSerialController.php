@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\DB;
  */
 class GenSerialController extends Controller
 {
-
     /**
      * シリアル生成ページ
      *
@@ -29,6 +28,7 @@ class GenSerialController extends Controller
         if(!$this->checkLogin($request)){
             return view('login/index', $this->response);
         }
+        $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー作成';
         return view('genserial/index', $this->response);
     }
 
@@ -70,7 +70,7 @@ class GenSerialController extends Controller
         }
         
         $activatedUsers = $this->createActivatedUsers($serials, $username, $email);
-
+        $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー登録完了';
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0004;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_SUCCESS;
         $this->response['datas'] = ['activatedUsers' => $activatedUsers];
@@ -105,7 +105,6 @@ class GenSerialController extends Controller
      * @return ActivatedUser
      */
     private function createActivatedUsers($serials, $username, $email){
-        
         $activatedUsers = DB::transaction(function () use ( $serials, $username, $email) {
             $array = [];
             foreach ($serials as $serial){
@@ -125,7 +124,6 @@ class GenSerialController extends Controller
             }
             return $array;
         });
-
         return $activatedUsers;
     }
 }

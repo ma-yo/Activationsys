@@ -24,8 +24,14 @@ class Controller extends BaseController
      *
      * @var array
      */
-    public $response = ['commons' => ['username' => null, 'message' => null, 'messageType' => null], 'datas' => null];
-
+    public $response = ['commons' => ['systemdate' => null, 'subtitle' => null, 'username' => null, 'authority' => null, 'message' => null, 'messageType' => null], 'datas' => null];
+    /**
+     * Construct
+     */
+    public function __construct()
+    {
+        $this->response['commons']['systemdate'] = date('Ymd-Hi');
+    }
     /**
      * ログイン状態のチェック
      * セッション情報が残っていればログイン中と判断する
@@ -40,6 +46,7 @@ class Controller extends BaseController
             return false;
         }else{
             $this->response['commons']['username'] = $request->session()->get('username');
+            $this->response['commons']['authority'] = $request->session()->get('authority');
         }
         return true;
     }
@@ -54,6 +61,7 @@ class Controller extends BaseController
         $this->response['commons']['message'] = MessageUtil::MSG_ERR_0001;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_DANGER;
         $this->response['commons']['username'] = null;
+        $this->response['commons']['authority'] = null;
         return view('login/index', $this->response);
     }
     /**

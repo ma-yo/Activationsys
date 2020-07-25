@@ -26,6 +26,7 @@ class MenuController extends Controller
         if(!$this->checkLogin($request)){
             return view('login/index', $this->response);
         }   
+        $this->response['commons']['subtitle'] = ' -> メニュー';
         return view('menu/index', $this->response);
     }
 }

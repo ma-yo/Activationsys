@@ -179,7 +179,11 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
+        
+        // LaravelAspect AspectServiceProvider 
+        \Ytake\LaravelAspect\AspectServiceProvider::class,
+        // LaravelAspect Artisan Command
+        \Ytake\LaravelAspect\ConsoleServiceProvider::class,
     ],
 
     /*

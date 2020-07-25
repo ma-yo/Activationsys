@@ -15,7 +15,8 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "league/csv": "^9.6",
-        "usmanhalalit/laracsv": "^2.0"
+        "usmanhalalit/laracsv": "^2.0",
+        "ytake/laravel-aspect": "^6.0"
     },
     "require-dev": {
         "facade/ignition": "^2.0",
