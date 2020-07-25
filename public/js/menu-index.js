@@ -63,7 +63,7 @@ $(function () {
 
         if($('#menu-action').val() == 'downloadserial'){
             //出力が早すぎるとモーダルダイアログが閉じないため、対応する
-            Common.sleep(2000, function(){
+            Common.sleep(1000, function(){
                 //非同期処理にてCSVをダウンロードする
                 $.ajax({
                     type: 'get',
@@ -99,7 +99,7 @@ $(function () {
 
         if($('#menu-action').val() == 'downloaduser'){
             //出力が早すぎるとモーダルダイアログが閉じないため、対応する
-            Common.sleep(2000, function(){
+            Common.sleep(1000, function(){
                 //非同期処理にてCSVをダウンロードする
                 $.ajax({
                     type: 'get',
