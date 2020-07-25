@@ -104,7 +104,7 @@
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" id="info-modal-ok" class="btn btn-info" data-dismiss="modal">OK</button>
+          <button type="button" id="info-modal-ok-button" name="info-modal-ok-button" class="btn btn-info text-white" data-dismiss="modal">OK</button>
         </div>
       </div>
     </div>
@@ -128,7 +128,7 @@
           </table>
         </div>
         <div class="modal-footer">
-          <button type="button" id="okcancel-modal-ok-button" name="okcancel-modal-ok-button" class="btn btn-info">OK</button>
+          <button type="button" id="okcancel-modal-ok-button" name="okcancel-modal-ok-button" class="btn btn-info text-white">OK</button>
           <button type="button" id="okcancel-modal-cancel-button" name="okcancel-modal-cancel-button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
         </div>
       </div>

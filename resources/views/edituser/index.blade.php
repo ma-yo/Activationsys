@@ -15,7 +15,6 @@
     @csrf
     <div class="form-group form-inline">
         <span class="mr-auto"></span>
-        <button type="button" id="genpassword-button" name="genpassword-button" class="btn btn-info btn-md ml-2">パスワードを作成</button>
         <button type="button" id="edituser-button" name="edituser-button" class="btn btn-info btn-md ml-2">更新</button>
         <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
     </div>
@@ -36,10 +35,13 @@
         <label class="form-content text-dark">パスワード</label>
         <div class="form-inline">
             <span id="genpassword" name="genpassword" class="form-control">{{$datas['genpassword']}}</span>
-            <button type="button" id="setpassword-button" name="setpassword-button" class="btn btn-info ml-2">パスワード適用</button>
+            <button type="button" id="genpassword-button" name="genpassword-button" class="btn btn-info btn-md ml-2">パスワードを作成</button>
+            <button type="button" id="setpassword-button" name="setpassword-button" class="btn btn-success ml-2">パスワード適用</button>
         </div>
         <input type="password" id="password" name="password" class="form-control mt-1 @if(!empty($errors->first('password'))) is-invalid @endif" value="{{$datas['user']->password}}" placeholder="パスワードを設定してください。"> 
+        <input type="password" id="password2" name="password2" class="form-control mt-1 @if(!empty($errors->first('password2'))) is-invalid @endif" value="{{$datas['user']->password}}" placeholder="確認用パスワードを設定してください。"> 
         <span class="text-danger">{{$errors->first('password')}}</span>
+        <span class="text-success h6" id="passwordcheck-message"></span>
     </div>
 
     <div class="form-group">
