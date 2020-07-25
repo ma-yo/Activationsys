@@ -29,10 +29,9 @@
         <span class="text-danger">{{$errors->first('email')}}</span>
     </div>
     <div class="form-group">
-        <label class="form-content text-dark">発行数</label>
+    <label class="form-content text-dark">発行数 (最大登録数 = {{$datas['maxIssuedQuantity']}})</label>
         <input type="number" id="issued-quantity" name="issued-quantity" class="form-control @if(!empty($errors->first('issued-quantity'))) is-invalid @endif" value="{{old('issued-quantity')}}" placeholder="発行数を入力してください。"> 
         <span class="text-danger">{{$errors->first('issued-quantity')}}</span>
     </div>
-
 </form>
 @endsection

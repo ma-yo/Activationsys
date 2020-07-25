@@ -24,8 +24,13 @@
         </div>
         <div class="form-group">
             <label for="maxsearchrow-label" class="h6 text-info">検索結果最大表示行数</label><br>
-        <input type="number" id="maxsearchrow-quantity" name="maxsearchrow-quantity" class="form-control @if(!empty($errors->first('maxsearchrow-quantity'))) is-invalid @endif" value="{{$datas['maxsearchrow']}}" placeholder="最大検索行数を入力してください。"> 
+            <input type="number" id="maxsearchrow-quantity" name="maxsearchrow-quantity" class="form-control @if(!empty($errors->first('maxsearchrow-quantity'))) is-invalid @endif" value="{{$datas['maxsearchrow']}}" placeholder="最大検索行数を入力してください。"> 
             <span class="text-danger">{{$errors->first('maxsearchrow-quantity')}}</span>
+        </div>
+        <div class="form-group">
+            <label for="maxissued-quantity-label" class="h6 text-info">シリアルキー最大発行数</label><br>
+            <input type="number" id="maxissued-quantity" name="maxissued-quantity" class="form-control @if(!empty($errors->first('maxissued-quantity'))) is-invalid @endif" value="{{$datas['maxissued']}}" placeholder="最大登録数を入力してください。"> 
+            <span class="text-danger">{{$errors->first('maxissued-quantity')}}</span>
         </div>
         <button type="button" id="settinginfo-button" name="settinginfo-button" class="btn btn-info btn-md ml-2">更新</button>
         <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>

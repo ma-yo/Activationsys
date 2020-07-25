@@ -31,6 +31,13 @@ class SettingInfoTableSeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
           ],
+          [
+            'settingid' => '0003',
+            'value1' => '100',
+            'description' => 'シリアル登録上限数',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+          ],
       ]);
     }
 }

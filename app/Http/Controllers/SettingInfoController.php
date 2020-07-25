@@ -26,13 +26,17 @@ class SettingInfoController extends Controller
         if(!$this->checkLogin($request)){
             return view('login/index', $this->response);
         }   
-
+        //シリアルキー関連付け解除最大回数
         $serialreset = SettingInfo::where('settingid', '0001')->first();
+        //検索結果表示最大数
         $maxsearchrow = SettingInfo::where('settingid', '0002')->first();
+        //シリアルキー最大登録数
+        $maxissued = SettingInfo::where('settingid', '0003')->first();
         
         $this->response['commons']['subtitle'] = ' -> メニュー -> 設定値編集';
         $this->response['datas']['serialreset'] = $serialreset->value1;
         $this->response['datas']['maxsearchrow'] = $maxsearchrow->value1;
+        $this->response['datas']['maxissued'] = $maxissued->value1;
         return view('settinginfo/index', $this->response);
     }
 
@@ -54,10 +58,12 @@ class SettingInfoController extends Controller
 
         $serialreset = $request->input('serialreset-quantity');
         $maxsearchrow = $request->input('maxsearchrow-quantity');
+        $maxissued = $request->input('maxissued-quantity');
 
         $validator = Validator::make($request->all(), [
             'serialreset-quantity'=>'required|integer|min:1',
             'maxsearchrow-quantity'=>'required|integer|min:1|max:10000',
+            'maxissued-quantity'=>'required|integer|min:1|max:1000',
         ]);
 
         if ($validator->fails()) {
@@ -68,12 +74,14 @@ class SettingInfoController extends Controller
         
         SettingInfo::where('settingid', '0001')->update(['value1' => $serialreset]);
         SettingInfo::where('settingid', '0002')->update(['value1' => $maxsearchrow]);
+        SettingInfo::where('settingid', '0003')->update(['value1' => $maxissued]);
 
         $this->response['commons']['subtitle'] = ' -> メニュー -> 設定値編集';
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0006;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_SUCCESS;
         $this->response['datas']['serialreset'] = $serialreset;
         $this->response['datas']['maxsearchrow'] = $maxsearchrow;
+        $this->response['datas']['maxissued'] = $maxissued;
         return view('settinginfo/index', $this->response);
     }
 }

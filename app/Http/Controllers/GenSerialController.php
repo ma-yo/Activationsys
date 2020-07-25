@@ -8,6 +8,7 @@ use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
+use App\SettingInfo;
 
 /**
  * シリアルキー作成処理
@@ -28,7 +29,9 @@ class GenSerialController extends Controller
         if(!$this->checkLogin($request)){
             return view('login/index', $this->response);
         }
+        $maxIssuedQuantity = $this->getMaxIssuedQuantity();
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー作成';
+        $this->response['datas'] = ['maxIssuedQuantity' => $maxIssuedQuantity];
         return view('genserial/index', $this->response);
     }
 
@@ -50,11 +53,12 @@ class GenSerialController extends Controller
         $username = $request->input('username');
         $email = $request->input('email');
         $quant = $request->input('issued-quantity');
+        $maxIssuedQuantity = $this->getMaxIssuedQuantity();
 
         $validator = Validator::make($request->all(), [
-            'username'=>'required',
+            'username'=>'required|max:256',
             'email'=>'required|email',
-            'issued-quantity'=>'required|integer|min:1|max:100'
+            'issued-quantity'=>'required|integer|min:1|max:' . $maxIssuedQuantity
         ]);
 
         if ($validator->fails()) {
@@ -76,7 +80,16 @@ class GenSerialController extends Controller
         $this->response['datas'] = ['activatedUsers' => $activatedUsers];
         return view('genserial/result', $this->response);
     }
-
+    /**
+     * 最大登録シリアル数を取得する
+     *
+     * @return void
+     */
+    private function getMaxIssuedQuantity(){
+        
+        $maxIssuedQuantity = SettingInfo::where('settingid','0003')->first();
+        return $maxIssuedQuantity->value1;
+    }
     /**
      * 32桁のシリアルキーを生成する
      *

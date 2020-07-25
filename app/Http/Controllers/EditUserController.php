@@ -137,8 +137,8 @@ class EditUserController extends Controller
         $changeban = $request->input('ban');
 
         $validator = Validator::make($request->all(), [
-            'userlist'=>'required',
-            'password'=>['required', new PasswordComplexity],
+            'userlist'=>'required|max:256',
+            'password'=>['required|max:256', new PasswordComplexity],
             'authority' => 'in:1,2',
             'ban' => 'in:0,1'
         ]);

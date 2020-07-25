@@ -48,7 +48,7 @@ class CreateUserController extends Controller
         $authority = $request->input('authority');
 
         $validator = Validator::make($request->all(), [
-            'username'=>'required'
+            'username'=>'required|max:256'
         ]);
 
         if ($validator->fails()) {
