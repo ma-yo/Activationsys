@@ -9,23 +9,23 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">  
   <link href="css/common.css?{{$commons['systemdate']}}" rel="stylesheet" type="text/css">
-
-  @yield('css')
+@yield('css')
 
   <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+
 </head>
 <body>
 <nav class="navbar navbar-expand-sm navbar-light bg-dark">
-    <span class="navbar-brand mb-0 h1 text-white">Activation System</span>
-    <span class="mb-0 h6 text-white mr-auto">@if(isset($commons['subtitle'])) {{$commons['subtitle']}} @endif</span>
+    <span id="brand-area" class="navbar-brand mb-0 h1 text-white">Activation System</span>
+    <span id="bread-crunb" class="mb-0 h6 text-white mr-auto">@if(isset($commons['subtitle'])) {{$commons['subtitle']}} @endif</span>
     
     @if(isset($commons['username']))
-    <span class="mb-0 text-white mr-1">LOGIN :</span>
-    <span class="mb-0 text-white mr-3">{{$commons['username']}}さん</span>
-    <span class="mb-0 text-white mr-3">|</span>
+    <span id="login-info-1" class="mb-0 text-white mr-1">LOGIN :</span>
+    <span id="login-info-2" class="mb-0 text-white mr-3">{{$commons['username']}}さん</span>
+    <span id="login-info-3" class="mb-0 text-white mr-3">|</span>
     <form class="form form-inline my-2 my-md-0" id="logout-form" name="logout-form" action="/logout" method="get">
         @csrf
         <button class="form-control btn btn-secondary" type="submit" id="logout-button" name="logout-button">ログアウト</button>
@@ -67,6 +67,7 @@
 
 @yield('content')
 </div>
+
 
 <!-- プログレスモーダル -->
 <div class="modal fade" id="progress-modal" tabindex="-1" role="dialog" aria-labelledby="progress-modal-title"
