@@ -47,6 +47,15 @@ body {
 }
 
 @media (max-width: 543px) {
+	table {
+		width: 100%;
+	}
+	th,td {
+		display: block;
+		text-align: left;
+    width: 100%;
+    font-size:11px;
+  }
   .h1-title{
     font-size:18px;
     font-weight: 700;
