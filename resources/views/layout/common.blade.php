@@ -7,16 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')｜Blade Template file</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
-        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
-    <link href="css/common.css?{{$commons['systemdate']}}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="css/local/bootstrap/bootstrap-4.3.1.min.css?{{$commons['systemdate']}}">
+    <link rel="stylesheet" href="css/local/fontawesome/fontawesome-5.14.0.all.css?{{$commons['systemdate']}}">
+    <link rel="stylesheet" href="css/common.css?{{$commons['systemdate']}}">
     @yield('css')
 
     <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="js/local/html5shiv/html5shiv-3.7.2.min.js?{{$commons['systemdate']}}"></script>
+  <script src="js/local/respond/respond-1.4.2.min.js?{{$commons['systemdate']}}"></script>
   <![endif]-->
 
 </head>
@@ -157,18 +155,11 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-    </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/encoding-japanese/1.0.30/encoding.min.js"
-        integrity="sha512-rqL5c2sp6KdRdB27P16dSYF9J3/WrP+UHrKuzWiN6304wz0bzv1ZE8G+zieQGSnNfg9UasgKNOQzv4yir7+Prg=="
-        crossorigin="anonymous"></script>
-    <script type="text/javascript" src="js/common.js?{{$commons['systemdate']}}"></script>
+    <script src="js/local/jquery/jquery-3.5.1.min.js?{{$commons['systemdate']}}"></script>
+    <script src="js/local/bootstrap/popper-1.14.7.min.js?{{$commons['systemdate']}}"></script>
+    <script src="js/local/bootstrap/bootstrap-4.3.1.min.js?{{$commons['systemdate']}}"></script>
+    <script src="js/local/encoding/encoding-japanese-1.0.30.min.js?{{$commons['systemdate']}}"></script>
+    <script src="js/common.js?{{$commons['systemdate']}}"></script>
 
     @yield('js')
 </body>
