@@ -51,7 +51,9 @@
         margin-bottom: 5px;
         width: 30%;
     }
-
+    #searchword {
+        width: 200px;
+    }
     th,
     td {
         display: block;
