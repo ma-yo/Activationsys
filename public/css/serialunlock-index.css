@@ -27,7 +27,7 @@
     button {
         margin-top: 5px;
         margin-bottom: 5px;
-        width: 30%;
+        width: 100%;
     }
     #searchserial-button{
         width:100px;
@@ -49,7 +49,7 @@
     button {
         margin-top: 5px;
         margin-bottom: 5px;
-        width: 30%;
+        width: 100%;
     }
     #searchword {
         width: 200px;
