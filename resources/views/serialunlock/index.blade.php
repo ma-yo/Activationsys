@@ -9,14 +9,14 @@
 @endsection
 
 @section('content')
-<p class="text-info h2">シリアル凍結解除を行います。</p>
-<p class="text-info h2">ユーザーはアプリケーションを再度利用できるようになります。</p>
+<p class="text-info h2 h2-title">シリアル凍結解除を行います。</p>
+<p class="text-info h2 h2-title">ユーザーはアプリケーションを再度利用できるようになります。</p>
 
 <form id="serialunlock-form" class="form" action="" method="post">
     @csrf
     <div class="form border border-info p-3 rounded">
         <div class="form-group form-inline">
-            <input type="text" id="searchword" name="searchword" class="form-control" value="{{$datas['searchword']}}" style="width:400px;"
+            <input type="text" id="searchword" name="searchword" class="form-control" value="{{$datas['searchword']}}"
                     placeholder="名称やE-mail,シリアルキーを入力してください。"/>
             <button type="button" id="searchserial-button" name="searchserial-button" class="btn btn-primary btn-md ml-2 mr-auto">検索</button>
             @if(!empty($datas['activatedUsers']))

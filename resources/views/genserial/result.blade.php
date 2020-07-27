@@ -11,7 +11,7 @@
 @section('content')
 
 <div id="genserial-result">
-    <p class="h2 text-primary">下記シリアルを認証ユーザーへ通知してください。</p>
+    <p class="h2 h2-title text-primary">下記シリアルを認証ユーザーへ通知してください。</p>
 
     <form id="menuback-form" class="form border border-primary rounded p-3 mb-3" action="/menu" method="get">
         @csrf

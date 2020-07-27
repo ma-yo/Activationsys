@@ -11,7 +11,7 @@
 @section('content')
 
 <div id="settinginfo">
-    <p class="h2 text-info">設定値を変更してください。</p>
+    <p class="h2 h2-title text-info">設定値を変更してください。</p>
     <form id="settinginfo-form" class="form border border-info p-3 rounded" action="{{ url('/settinginfo') }}" method="post">
         @csrf
         <div class="form-group form-inline">

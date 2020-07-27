@@ -1,32 +1,20 @@
-/**大デバイス（デスクトップ, 1200px 未満）*/
-@media (min-width: 992px) {
-    button {
-        margin-top: 0px;
-    }
+
+@media (min-width: 1199px) {
 }
 
-/** 中デバイス（タブレット, 992px 未満）*/
-@media (max-width: 991.98px) {
-    button {
-        margin-top: 0px;
-    }
+@media (max-width: 991px) {
 }
 
-/** 小デバイス（横向きモバイル, 768px 未満）*/
-@media (max-width: 767.98px) {
+@media (max-width: 767px) {
     button {
         margin-top: 5px;
         margin-bottom: 5px;
         width:100%;
     }
+    #logout-button{
+        width:auto;
+    }
 }
 
-/** @include media-breakpoint-up(sm) {
-/** 極小デバイス（縦向きモバイル, 576px 未満）*/
-@media (max-width: 575.98px) {
-    button {
-        margin-top: 5px;
-        margin-bottom: 5px;
-        width:100%;
-    }
+@media (max-width: 543px) {
 }

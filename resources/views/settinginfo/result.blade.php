@@ -11,7 +11,7 @@
 @section('content')
 
 <div id="settinginfo-result">
-    <p class="h2 text-primary">設定情報を変更しました。</p>
+    <p id="h2-title" class="h2 text-primary">設定情報を変更しました。</p>
 
     <form id="menuback-form" class="form border border-primary rounded p-3 mb-3" action="/menu" method="get">
         @csrf

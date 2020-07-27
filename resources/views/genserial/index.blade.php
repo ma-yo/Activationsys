@@ -10,7 +10,7 @@
 
 @section('content')
 
-<p class="text-info h2">シリアル生成ユーザー情報を入力してください。</p>
+<p class="text-info h2 h2-title">シリアル生成ユーザー情報を入力してください。</p>
 <form id="genserial-form" class="form border border-info p-3 rounded" action="" method="post">
     @csrf
     <div class="form-group form-inline">

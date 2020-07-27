@@ -11,8 +11,8 @@
     <div class="row justify-content-center align-items-center">
         <div class="bg-dark text-center mt-5" style="width:400px;">
             <img src="img/logo.png?{{$commons['systemdate']}}" width="80px" />
-            <h2 class="text-center text-white mt-1">ACTIVATION SYSTEM</h2>
-            <h3 class="text-center text-white">LOGIN</h3>
+            <h2 class="text-center text-white mt-1 h2-title">ACTIVATION SYSTEM</h2>
+            <h3 class="text-center text-white h3-title">LOGIN</h3>
         </div>
     </div>
     <div class="row justify-content-center align-items-center">

@@ -10,7 +10,7 @@
 
 @section('content')
 
-<p class="text-info h2">新規ユーザー情報を入力してください。</p>
+<p class="text-info h2 h2-title">新規ユーザー情報を入力してください。</p>
 <form id="createuser-form" class="form border border-info p-3 rounded" action="" method="post">
     @csrf
     <div class="form-group form-inline">

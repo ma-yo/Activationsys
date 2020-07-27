@@ -1,60 +1,63 @@
 body {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
     font-family: 'YuGothic', 'Yu Gothic', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', 'メイリオ', 'Meiryo', 'ＭＳ ゴシック', sans-serif;
 
 }
 
-/**大デバイス（デスクトップ, 1200px 未満）*/
-@media (min-width: 992px) {
+@media (min-width: 1199px) {
     
 }
 
-/** 中デバイス（タブレット, 992px 未満）*/
-@media (max-width: 991.98px) {
-
-}
-
-/** 小デバイス（横向きモバイル, 768px 未満）*/
-@media (max-width: 767.98px) {
-  #brand-area{
-    width:50%;
-  }
-  #bread-crunb{
-    width:0;
-    height:0;
+@media (max-width: 991px) {
+  #navbar-pipe{
     visibility: hidden;
   }
-  #login-info-1{
-    width:0;
-    height:0;
-    visibility: hidden;
-  }
-  #login-info-2{
-    width:0;
-    height:0;
-    visibility: hidden;
-  }
-  #login-info-3{
-    width:0;
-    height:0;
-    visibility: hidden;
-  }
-  #login-form{
-    width:100%;
+	th,td {
+    font-size:14px;
   }
 }
 
-/** @include media-breakpoint-up(sm) {
-/** 極小デバイス（縦向きモバイル, 576px 未満）*/
-@media (max-width: 575.98px) {
+@media (max-width: 767px) {
+  .h1-title{
+    font-size:20px;
+    font-weight: 700;
+  }
+  .h2-title{
+    font-size:18px;
+    font-weight: 700;
+  }
+  .h3-title{
+    font-size:16px;
+    font-weight: 700;
+  }
+	th,td {
+    font-size:12px;
+  }
+}
+
+@media (max-width: 543px) {
 	table {
 		width: 100%;
 	}
 	th,td {
 		display: block;
 		text-align: left;
-		width: 100%;
+    width: 100%;
+    font-size:10px;
+  }
+  .h1-title{
+    font-size:18px;
+    font-weight: 700;
+  }
+  .h2-title{
+    font-size:16px;
+    font-weight: 700;
+  }
+  .h3-title{
+    font-size:14px;
+    font-weight: 700;
+  }
+  .h4-title{
+    font-size:12px;
+    font-weight: 700;
   }
 }
