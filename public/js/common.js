@@ -1,6 +1,7 @@
 history.pushState(null, null, location.href);
 $(window).on('popstate', function(){
   history.go(1);
+  alert('戻る操作は禁止されています。');
 });
 
 var Common = {
