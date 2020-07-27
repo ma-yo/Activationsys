@@ -26,11 +26,11 @@
         <div class="row w-100 m-0">
             <div class="col-xs-12 col-md-12 col-lg-7 p-0">
                 <span id="brand-area" class="navbar-brand h1 h1-title text-white my-auto">Activation System</span>
-                <span id="bread-crunb" class="h6 text-white my-auto">@if(isset($commons['subtitle']))
+                <span id="bread-crunb" class="h6 h6-title text-white my-auto">@if(isset($commons['subtitle']))
                     {{$commons['subtitle']}} @endif</span>
             </div>
             @if(isset($commons['username']))
-            <div class="col-xs-12 col-md-12 col-lg-3 my-auto h6 text-white text-right p-0">
+            <div class="col-xs-12 col-md-12 col-lg-3 my-auto h6 h6-title text-white text-right p-0">
               <span>LOGIN :{{$commons['username']}}さん</span>
               <span id="navbar-pipe"> | </span>
             </div>

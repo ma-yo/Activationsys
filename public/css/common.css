@@ -29,6 +29,18 @@ body {
     font-size:16px;
     font-weight: 700;
   }
+  .h4-title{
+    font-size:14px;
+    font-weight: 700;
+  }
+  .h5-title{
+    font-size:12px;
+    font-weight: 700;
+  }
+  .h6-title{
+    font-size:11px;
+    font-weight: 700;
+  }
 	th,td {
     font-size:12px;
   }
@@ -58,6 +70,14 @@ body {
   }
   .h4-title{
     font-size:12px;
+    font-weight: 700;
+  }
+  .h5-title{
+    font-size:11px;
+    font-weight: 700;
+  }
+  .h6-title{
+    font-size:10px;
     font-weight: 700;
   }
 }
