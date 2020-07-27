@@ -8,7 +8,8 @@
     <title>@yield('title')｜Blade Template file</title>
 
     <link rel="stylesheet" href="css/local/bootstrap/bootstrap-4.3.1.min.css?{{$commons['systemdate']}}">
-    <link rel="stylesheet" href="css/local/fontawesome/fontawesome-5.14.0.all.css?{{$commons['systemdate']}}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+    integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link rel="stylesheet" href="css/common.css?{{$commons['systemdate']}}">
     @yield('css')
 
