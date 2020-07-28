@@ -64,7 +64,7 @@ class ActivateController extends Controller
      */
     public function deactivate(Request $request){
         $serial = $request->input('serialid');
-        $deviceid = $request->input('deviceid');
+        $email = $request->input('email');
 
         //認証ユーザーテーブルよりシリアルキーにてデータを取得する
         $activatedUser = ActivatedUser::where('serialid', $serial)->first();
@@ -76,17 +76,17 @@ class ActivateController extends Controller
         if($activatedUser->ban != null){
             return response()->json(['result'=>'fail', 'code' => '102', 'devchangelimit'=> '', 'description'=>'シリアルキーはロックされています。']);
         }
-        //デバイスIDパラメーターが渡されていない場合は、エラーとして返す
-        if(empty($deviceid)){
+        //EMAILパラメーターが渡されていない場合は、エラーとして返す
+        if(empty($email)){
             return response()->json(['result'=>'fail', 'code' => '103', 'devchangelimit'=> '', 'description'=>'認証に必要なパラメーターが不足しています。']);
         }
         $serialreset = SettingInfo::where('settingid', '0001')->first()->value1;
         //デバイスIDが一致した場合は認証解除する
-        if($activatedUser->deviceid == $deviceid){
+        if(strtoupper($activatedUser->email) == strtoupper($email)){
             ActivatedUser::where('serialid', $serial)->update(['deviceid' => null]);
             return response()->json(['result'=>'success', 'code' => '001','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'認証を解除しました。']);
         }
         //デバイスIDがDBに登録されているものと一致しない場合は、別PCから実行されている可能性があるため、エラーとして返す
-        return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'このシリアルキーは他のデバイスにて認証されています。']);
+        return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'このシリアルキーは他のユーザーにて認証されています。']);
     }
 }
