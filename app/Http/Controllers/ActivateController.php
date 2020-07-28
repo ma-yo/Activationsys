@@ -38,19 +38,19 @@ class ActivateController extends Controller
 
         $serialreset = SettingInfo::where('settingid', '0001')->first()->value1;
         if($activatedUser->devicechangecount > $serialreset){
-            return response()->json(['result'=>'fail', 'code' => '105','devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1),  'description'=>'デバイス認証回数制限を超えています。シリアルキーはロックされました。']);
+            return response()->json(['result'=>'fail', 'code' => '105','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)),  'description'=>'デバイス認証回数制限を超えています。シリアルキーはロックされました。']);
         }
         //デバイスIDが一致した場合は認証OKとする
         if($activatedUser->deviceid == $deviceid){
-            return response()->json(['result'=>'success', 'code' => '001', 'devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1), 'description'=>'シリアルキーはお使いのデバイスに認証されています。']);
+            return response()->json(['result'=>'success', 'code' => '001', 'devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'シリアルキーはお使いのデバイスに認証されています。']);
         }
         //デバイスIDがDBに保存されていない状態は、認証するPCがシリアルに関連付けられていない場合となる。
         //この場合は、デバイスIDをシリアルキーに紐づけ、認証OKとする
         if(empty($activatedUser->deviceid)){
             $activatedUser->deviceid = $deviceid;
             $activatedUser->devicechangecount++;
-            ActivatedUser::where('serialid', $serial)->update(['deviceid' => $deviceid, 'devicechangecount'=> ($serialreset - $activatedUser->devicechangecount + 1)]);
-            return response()->json(['result'=>'success', 'code' => '002','devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1), 'description'=>'シリアルキーを認証しました。']);
+            ActivatedUser::where('serialid', $serial)->update(['deviceid' => $deviceid, 'devicechangecount'=> ($activatedUser->devicechangecount)]);
+            return response()->json(['result'=>'success', 'code' => '002','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'シリアルキーを認証しました。']);
         }
         //デバイスIDがDBに登録されているものと一致しない場合は、別PCから実行されている可能性があるため、エラーとして返す
         return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> $activatedUser->devicechangecount,  'description'=>'お使いのデバイスではこのシリアルキーは認証されていません。']);
@@ -83,11 +83,10 @@ class ActivateController extends Controller
         $serialreset = SettingInfo::where('settingid', '0001')->first()->value1;
         //デバイスIDが一致した場合は認証解除する
         if($activatedUser->deviceid == $deviceid){
-            $rimit = $serialreset - ($activatedUser->devicechangecount - 1);
             ActivatedUser::where('serialid', $serial)->update(['deviceid' => null]);
-            return response()->json(['result'=>'success', 'code' => '001','devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1), 'description'=>'認証を解除しました。']);
+            return response()->json(['result'=>'success', 'code' => '001','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'認証を解除しました。']);
         }
         //デバイスIDがDBに登録されているものと一致しない場合は、別PCから実行されている可能性があるため、エラーとして返す
-        return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1), 'description'=>'お使いのデバイスではこのシリアルキーは認証されていません。']);
+        return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'お使いのデバイスではこのシリアルキーは認証されていません。']);
     }
 }
