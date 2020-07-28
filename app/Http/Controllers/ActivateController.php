@@ -53,7 +53,7 @@ class ActivateController extends Controller
             return response()->json(['result'=>'success', 'code' => '002','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'シリアルキーを認証しました。']);
         }
         //デバイスIDがDBに登録されているものと一致しない場合は、別PCから実行されている可能性があるため、エラーとして返す
-        return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> $activatedUser->devicechangecount,  'description'=>'お使いのデバイスではこのシリアルキーは認証されていません。']);
+        return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> $activatedUser->devicechangecount,  'description'=>'このシリアルキーは他のデバイスにて認証されています。']);
     }
         /**
      * 認証解除を行う
@@ -87,6 +87,6 @@ class ActivateController extends Controller
             return response()->json(['result'=>'success', 'code' => '001','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'認証を解除しました。']);
         }
         //デバイスIDがDBに登録されているものと一致しない場合は、別PCから実行されている可能性があるため、エラーとして返す
-        return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'お使いのデバイスではこのシリアルキーは認証されていません。']);
+        return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'このシリアルキーは他のデバイスにて認証されています。']);
     }
 }
