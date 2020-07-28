@@ -49,7 +49,7 @@ class ActivateController extends Controller
         if(empty($activatedUser->deviceid)){
             $activatedUser->deviceid = $deviceid;
             $activatedUser->devicechangecount++;
-            ActivatedUser::where('serialid', $serial)->update(['deviceid' => $deviceid, 'devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1)]);
+            ActivatedUser::where('serialid', $serial)->update(['deviceid' => $deviceid, 'devicechangecount'=> ($serialreset - $activatedUser->devicechangecount + 1)]);
             return response()->json(['result'=>'success', 'code' => '002','devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1), 'description'=>'シリアルキーを認証しました。']);
         }
         //デバイスIDがDBに登録されているものと一致しない場合は、別PCから実行されている可能性があるため、エラーとして返す
@@ -85,7 +85,7 @@ class ActivateController extends Controller
         if($activatedUser->deviceid == $deviceid){
             $rimit = $serialreset - ($activatedUser->devicechangecount - 1);
             ActivatedUser::where('serialid', $serial)->update(['deviceid' => null]);
-            return response()->json(['result'=>'success', 'code' => '001','devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1), 'description'=>'認証を解除しました。再認証可能回数は残り' . $rimit  . '回です。']);
+            return response()->json(['result'=>'success', 'code' => '001','devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1), 'description'=>'認証を解除しました。']);
         }
         //デバイスIDがDBに登録されているものと一致しない場合は、別PCから実行されている可能性があるため、エラーとして返す
         return response()->json(['result'=>'fail', 'code' => '104','devchangelimit'=> ($serialreset - $activatedUser->devicechangecount + 1), 'description'=>'お使いのデバイスではこのシリアルキーは認証されていません。']);
