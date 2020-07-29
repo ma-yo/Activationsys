@@ -31,6 +31,8 @@ class CreateActivatedUsersTable extends Migration
             $table->string('deviceid')->nullable();
             //削除フラグ
             $table->string('ban')->nullable();
+            //デバイス更新回数
+            $table->integer('devicechangecount')->default(0);
             $table->timestamps();
             $table->primary(['serialid'],'activated_users_pkey');
         });
