@@ -20,9 +20,10 @@ class ActivateController extends Controller
     public function activate(Request $request){
         $serial = $request->input('serialid');
         $deviceid = $request->input('deviceid');
+        $appid = $request->input('appid');
 
         //認証ユーザーテーブルよりシリアルキーにてデータを取得する
-        $activatedUser = ActivatedUser::where('serialid', $serial)->first();
+        $activatedUser = ActivatedUser::where('serialid', $serial)->where('appid', $appid)->first();
         //シリアルキーが存在しない場合はエラーとして返す
         if(empty($activatedUser)){
             return response()->json(['result'=>'fail', 'code' => '101', 'devchangelimit'=> '', 'description'=>'入力されたシリアルキーは存在しません。']);
@@ -65,9 +66,10 @@ class ActivateController extends Controller
     public function deactivate(Request $request){
         $serial = $request->input('serialid');
         $email = $request->input('email');
+        $appid = $request->input('appid');
 
         //認証ユーザーテーブルよりシリアルキーにてデータを取得する
-        $activatedUser = ActivatedUser::where('serialid', $serial)->first();
+        $activatedUser = ActivatedUser::where('serialid', $serial)->where('appid', $appid)->first();
         //シリアルキーが存在しない場合はエラーとして返す
         if(empty($activatedUser)){
             return response()->json(['result'=>'fail', 'code' => '101', 'devchangelimit'=> '', 'description'=>'入力されたシリアルキーは存在しません。']);
@@ -82,7 +84,7 @@ class ActivateController extends Controller
         }
         $serialreset = SettingInfo::where('settingid', '0001')->first()->value1;
         //デバイスIDが一致した場合は認証解除する
-        if(strtoupper($activatedUser->email) == strtoupper($email)){
+        if(strtoupper($activatedUser->email) == strtoupper($email) && $activatedUser->appid == $appid){
             ActivatedUser::where('serialid', $serial)->update(['deviceid' => null]);
             return response()->json(['result'=>'success', 'code' => '001','devchangelimit'=> ($serialreset - ($activatedUser->devicechangecount - 1)), 'description'=>'認証を解除しました。']);
         }

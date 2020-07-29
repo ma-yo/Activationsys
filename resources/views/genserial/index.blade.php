@@ -19,6 +19,14 @@
         <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
     </div>
     <div class="form-group">
+        <label class="form-content text-info">アプリケーション</label>
+        <select class="form-control" id="appid" name="appid">
+            @foreach($datas['applications'] as $app)
+            <option value="{{$app->appid}}" @if($app->appid==$datas['appid']) selected @endif>{{$app->name}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="form-group">
         <label class="form-content text-info">ユーザー名</label>
         <input type="text" id="username" name="username" class="form-control @if(!empty($errors->first('username'))) is-invalid @endif" value="{{old('username')}}" placeholder="適用ユーザー名を設定してください。"> 
         <span class="text-danger">{{$errors->first('username')}}</span>

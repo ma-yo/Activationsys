@@ -24,6 +24,7 @@
             <thead>
                 <tr>
                     <th>シリアルキー</th>
+                    <th>アプリケーション</th>
                     <th>ユーザー名</th>
                     <th>メールアドレス</th>
                     <th>登録日時</th>
@@ -34,6 +35,7 @@
                     @foreach($datas['activatedUsers'] as $user)
                         <tr>
                             <td><small>{{ $user->serialid }}</small></td>
+                            <td><small>{{ $user->appname }}</small></td>
                             <td><small>{{ $user->name }}</small></td>
                             <td><small>{{ $user->email }}</small></td>
                             <td><small>{{ $user->created_at }}</small></td>

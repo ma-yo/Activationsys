@@ -53,6 +53,15 @@ $(function () {
         $('#menu-form').attr("method", "get");
         $('#menu-form').submit();
     });
+    /**
+     * ユーザ編集画面へ移動する
+     */
+    $('#createapplication-button').on('click', function () {
+        $(":button").css('pointer-events', 'none');
+        $('#menu-form').attr("action", "/createapplication");
+        $('#menu-form').attr("method", "get");
+        $('#menu-form').submit();
+    });
     
     /**
      * シリアルキー一覧CSVを出力する

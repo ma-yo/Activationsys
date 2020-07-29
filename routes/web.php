@@ -48,10 +48,10 @@ Route::get('/edituser', 'EditUserController@index');
 Route::get('/changeedituser', 'EditUserController@changeuser');
 Route::get('/genpasswordedituser', 'EditUserController@genpassword');
 
-
 Route::post('/updateedituser', 'EditUserController@update');
 
-
+Route::post('/applicationcreate', 'ApplicationController@create');
+Route::get('/createapplication', 'ApplicationController@index');
 
 
 

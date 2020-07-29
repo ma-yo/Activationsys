@@ -19,6 +19,10 @@ class CreateActivatedUsersTable extends Migration
         Schema::create('activated_users', function (Blueprint $table) {
             //シリアルID
             $table->string('serialid');
+            //アプリケーションID
+            $table->string('appid');
+            //アプリケーション名
+            $table->string('appname');
             //登録者名
             $table->string('name');
             //登録EMAIL

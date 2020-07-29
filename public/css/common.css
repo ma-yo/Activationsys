@@ -8,9 +8,6 @@ body {
 }
 
 @media (max-width: 991px) {
-  #navbar-pipe{
-    visibility: hidden;
-  }
 	th,td {
     font-size:14px;
   }

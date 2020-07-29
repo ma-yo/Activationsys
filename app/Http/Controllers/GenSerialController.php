@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Commons\MessageUtil;
 use App\ActivatedUser;
+use App\Application;
 use DateTime;
 
 use Illuminate\Http\Request;
@@ -29,9 +30,13 @@ class GenSerialController extends Controller
         if(!$this->checkLogin($request)){
             return view('login/index', $this->response);
         }
+
+        $applications = Application::all();
+        $appid = $applications[0]->appid;
+
         $maxIssuedQuantity = $this->getMaxIssuedQuantity();
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー作成';
-        $this->response['datas'] = ['maxIssuedQuantity' => $maxIssuedQuantity];
+        $this->response['datas'] = ['maxIssuedQuantity' => $maxIssuedQuantity, 'applications' => $applications, 'appid' => $appid];
         return view('genserial/index', $this->response);
     }
 
@@ -53,6 +58,7 @@ class GenSerialController extends Controller
         $username = $request->input('username');
         $email = $request->input('email');
         $quant = $request->input('issued-quantity');
+        $appid = $request->input('appid');
         $maxIssuedQuantity = $this->getMaxIssuedQuantity();
 
         $validator = Validator::make($request->all(), [
@@ -73,7 +79,9 @@ class GenSerialController extends Controller
             $serials[] = $this->createSerial();
         }
         
-        $activatedUsers = $this->createActivatedUsers($serials, $username, $email);
+        $applications = Application::all();
+
+        $activatedUsers = $this->createActivatedUsers($serials, $username, $email, $appid);
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー登録完了';
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0004;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_SUCCESS;
@@ -115,17 +123,26 @@ class GenSerialController extends Controller
      * @param Array $serials
      * @param String $username
      * @param String $email
+     * @param String $appid
      * @return ActivatedUser
      */
-    private function createActivatedUsers($serials, $username, $email){
-        $activatedUsers = DB::transaction(function () use ( $serials, $username, $email) {
+    private function createActivatedUsers($serials, $username, $email, $appid){
+        $activatedUsers = DB::transaction(function () use ( $serials, $username, $email, $appid) {
             $array = [];
+            $applications = Application::all();
             foreach ($serials as $serial){
                 while(true){
                     $activatedUser = ActivatedUser::where('serialid',$serial)->first();
                     if($activatedUser == null){
                         $activatedUser = new ActivatedUser;
                         $activatedUser->serialid = $serial;
+                        $activatedUser->appid = $appid;
+                        foreach($applications as $app){
+                            if($appid == $app->appid){
+                                $activatedUser->appname = $app->name;
+                            break;
+                            }
+                        }
                         $activatedUser->name = $username;
                         $activatedUser->email = $email;
                         $activatedUser->created_at = new DateTime();

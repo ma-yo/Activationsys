@@ -36,6 +36,7 @@
                 <button type="button" id="createuser-button" name="createuser-button" class="btn btn-dark">ユーザー作成</button>
                 <button type="button" id="edituser-button" name="edituser-button" class="btn btn-dark">ユーザー編集</button>
                 <button type="button" id="downloaduser-button" name="downloaduser-button" class="btn btn-primary">ユーザー情報CSV出力</button>
+                <button type="button" id="createapplication-button" name="createapplication-button" class="btn btn-dark">アプリケーション登録</button>
             </div>
         </div>
         @endif

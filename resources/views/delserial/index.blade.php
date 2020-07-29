@@ -28,6 +28,7 @@
         <thead>
             <tr>
                 <th>選択</th>
+                <th>アプリケーション</th>
                 <th>ユーザー名</th>
                 <th>メールアドレス</th>
                 <th>シリアルキー</th>
@@ -45,6 +46,7 @@
                             <input type="checkbox" name="del-select[]"
                             value="{{ $user->serialid }}">
                         </td>
+                        <td><small>{{ $user->appname }}</small></td>
                         <td><small>{{ $user->name }}</small></td>
                         <td><small>{{ $user->email }}</small></td>
                         <td><small>{{ $user->serialid }}</small></td>

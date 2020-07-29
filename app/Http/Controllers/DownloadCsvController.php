@@ -38,6 +38,7 @@ class DownloadCsvController extends Controller
 
         $csvExporter->build($activatedUsers, [
             'serialid' => 'シリアルキー',
+            'appname' => 'アプリケーション',
             'name' => 'ユーザー名',
             'email' => 'メールアドレス',
             'deviceid' => 'デバイスID',
