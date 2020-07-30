@@ -21,8 +21,6 @@ class CreateActivatedUsersTable extends Migration
             $table->string('serialid');
             //アプリケーションID
             $table->string('appid');
-            //アプリケーション名
-            $table->string('appname');
             //登録者名
             $table->string('name');
             //登録EMAIL

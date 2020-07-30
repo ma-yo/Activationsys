@@ -16,6 +16,8 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->string('name');
             $table->string('password');
+            $table->integer('authority')->default(2);
+            $table->integer('ban')->default(0);
             $table->timestamps();
             $table->primary(['name'], 'users_pkey');
         });

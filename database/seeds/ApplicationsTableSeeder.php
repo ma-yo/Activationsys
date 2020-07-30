@@ -12,67 +12,24 @@ class ApplicationsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('applications')->insert([
-            [
-                'appid' => '001',
-                'name' => 'TopBuzzNewsUploader',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-              [
-                'appid' => '002',
-                'name' => 'NO SET',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-              [
-                'appid' => '003',
-                'name' => 'NO SET',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-              [
-                'appid' => '004',
-                'name' => 'NO SET',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-              [
-                'appid' => '005',
-                'name' => 'NO SET',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-              [
-                'appid' => '006',
-                'name' => 'NO SET',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-              [
-                'appid' => '007',
-                'name' => 'NO SET',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-              [
-                'appid' => '008',
-                'name' => 'NO SET',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-              [
-                'appid' => '009',
-                'name' => 'NO SET',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-              [
-                'appid' => '010',
-                'name' => 'NO SET',
-                'created_at' => new DateTime(),
-                'updated_at' => new DateTime(),
-              ],
-          ]);
+      $sqlAry = [];
+      $sqlAry[] = [
+        'appid' => '001',
+        'name' => 'TopBuzzNewsUploader',
+        'created_at' => new DateTime(),
+        'updated_at' => new DateTime(),
+      ];
+      for($i = 2; $i <=30; $i++){
+        $id = str_pad($i, 3, 0, STR_PAD_LEFT);
+        $sqlAry[] = [
+          'appid' =>  $id,
+          'name' => 'NO SET',
+          'created_at' => new DateTime(),
+          'updated_at' => new DateTime(),
+        ];
+      }
+      DB::table('applications')->insert(
+        $sqlAry
+      );
     }
 }

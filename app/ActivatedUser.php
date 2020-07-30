@@ -15,4 +15,14 @@ class ActivatedUser extends Model
      * @var string
      */
     protected $table = 'activated_users';
+
+    /**
+     * application テーブルを結合
+     *
+     * @return void
+     */
+    public function application()
+    {
+        return $this->hasOne('App\Application','appid','appid');
+    }
 }

@@ -46,7 +46,7 @@
                             <input type="checkbox" name="del-select[]"
                             value="{{ $user->serialid }}">
                         </td>
-                        <td><small>{{ $user->appname }}</small></td>
+                        <td><small>{{ $user->application()->first()->name }}</small></td>
                         <td><small>{{ $user->name }}</small></td>
                         <td><small>{{ $user->email }}</small></td>
                         <td><small>{{ $user->serialid }}</small></td>

@@ -129,7 +129,6 @@ class GenSerialController extends Controller
     private function createActivatedUsers($serials, $username, $email, $appid){
         $activatedUsers = DB::transaction(function () use ( $serials, $username, $email, $appid) {
             $array = [];
-            $applications = Application::all();
             foreach ($serials as $serial){
                 while(true){
                     $activatedUser = ActivatedUser::where('serialid',$serial)->first();
@@ -137,17 +136,11 @@ class GenSerialController extends Controller
                         $activatedUser = new ActivatedUser;
                         $activatedUser->serialid = $serial;
                         $activatedUser->appid = $appid;
-                        foreach($applications as $app){
-                            if($appid == $app->appid){
-                                $activatedUser->appname = $app->name;
-                            break;
-                            }
-                        }
                         $activatedUser->name = $username;
                         $activatedUser->email = $email;
                         $activatedUser->created_at = new DateTime();
                         $activatedUser->save();
-                        $array[] = $activatedUser;
+                        $array[] = ActivatedUser::where('serialid',$serial)->first();
                         break;
                     }
                 }

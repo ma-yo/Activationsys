@@ -31,7 +31,6 @@
             @if(isset($commons['username']))
             <div class="col-xs-12 col-md-12 col-lg-3 my-auto h6 h6-title text-white text-right p-0">
               <span>LOGIN :{{$commons['username']}}さん</span>
-              <span id="navbar-pipe"> | </span>
             </div>
             <div class="col-xs-12 col-md-12 col-lg-2 my-auto pt-0 pb-0">
                 <form class="form text-right" id="logout-form" name="logout-form" action="/logout" method="get">
@@ -44,7 +43,7 @@
         @endif
     </nav>
 
-    <div class="container mt-2">
+    <div class="container-fluid mt-2">
         @if(isset($commons['messageType']) && isset($commons['message']))
         <div class="row">
           <div class="col-md-12">

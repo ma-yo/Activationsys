@@ -61,7 +61,7 @@ class SettingInfoController extends Controller
         $maxissued = $request->input('maxissued-quantity');
 
         $validator = Validator::make($request->all(), [
-            'serialreset-quantity'=>'required|integer|min:1',
+            'serialreset-quantity'=>'required|integer|min:10',
             'maxsearchrow-quantity'=>'required|integer|min:1|max:10000',
             'maxissued-quantity'=>'required|integer|min:1|max:1000',
         ]);

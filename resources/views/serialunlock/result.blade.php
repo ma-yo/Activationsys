@@ -36,7 +36,7 @@
                     @foreach($datas['activatedUsers'] as $user)
                         <tr>
                             <td><small>{{ $user->serialid }}</small></td>
-                            <td><small>{{ $user->appname }}</small></td>
+                            <td><small>{{ $user->application->first()->name }}</small></td>
                             <td><small>{{ $user->name }}</small></td>
                             <td><small>{{ $user->email }}</small></td>
                             <td><small>{{ $user->created_at }}</small></td>
