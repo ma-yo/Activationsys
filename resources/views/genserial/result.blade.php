@@ -18,8 +18,10 @@
         <div class="form-group form-inline">
             <span class="mr-auto"></span>
             <button type="button" id="csvdownload-button" name="csvdownload-button" class="btn btn-primary btn-md ml-2">CSV出力</button>
+            <button type="button" id="pdfdownload-button" name="pdfdownload-button" class="btn btn-primary btn-md ml-2">PDF出力</button>
             <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>
         </div>
+    <input type='hidden' name='licid' value='{{$datas['licenseid']}}'/>
         <table id="resultserial-table" class="table table-hover">
             <thead>
                 <tr>
@@ -34,7 +36,7 @@
                 <tbody>
                     @foreach($datas['activatedUsers'] as $user)
                         <tr>
-                            <td><small>{{ $user->serialid }}</small></td>
+                        <td><small>{{ $user->serialid }}</small></td>
                             <td><small>{{ $user->application->first()->name }}</small></td>
                             <td><small>{{ $user->name }}</small></td>
                             <td><small>{{ $user->email }}</small></td>

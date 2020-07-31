@@ -29,9 +29,14 @@
             <span class="text-danger">{{$errors->first('serialreset-quantity')}}</span>
         </div>
         <div class="form-group">
-            <label for="maxsearchrow-label" class="h6 text-info">検索結果最大表示行数</label><br>
-            <input type="number" id="maxsearchrow-quantity" name="maxsearchrow-quantity" class="form-control @if(!empty($errors->first('maxsearchrow-quantity'))) is-invalid @endif" value="{{$datas['maxsearchrow']}}" placeholder="最大検索行数を入力してください。"> 
+            <label for="maxsearchrow-label" class="h6 text-info">シリアルID検索結果最大表示行数</label><br>
+            <input type="number" id="maxsearchrow-quantity" name="maxsearchrow-quantity" class="form-control @if(!empty($errors->first('maxsearchrow-quantity'))) is-invalid @endif" value="{{$datas['maxsearchrow']}}" placeholder="シリアルキー最大検索行数を入力してください。"> 
             <span class="text-danger">{{$errors->first('maxsearchrow-quantity')}}</span>
+        </div>
+        <div class="form-group">
+            <label for="maxlicenserow-label" class="h6 text-info">ライセンス証明書検索結果最大表示行数</label><br>
+            <input type="number" id="maxlicenserow-quantity" name="maxlicenserow-quantity" class="form-control @if(!empty($errors->first('maxlicenserow-quantity'))) is-invalid @endif" value="{{$datas['maxlicenserow']}}" placeholder="証明書最大検索行数を入力してください。"> 
+            <span class="text-danger">{{$errors->first('maxlicenserow-quantity')}}</span>
         </div>
         <div class="form-group">
             <label for="maxissued-quantity-label" class="h6 text-info">シリアルキー最大発行数</label><br>

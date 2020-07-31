@@ -1,0 +1,64 @@
+@media (min-width: 1199px) {
+    button {
+        margin-top: 0px;
+    }
+
+    #searchword {
+        width: 400px;
+    }
+}
+
+@media (max-width: 991px) {
+    button {
+        margin-top: 0px;
+    }
+
+    #searchword {
+        width: 250px;
+    }
+
+    th,
+    td {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 767px) {
+    button {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+    #searchserial-button{
+        width:100px;
+    }
+    table {
+        width: 100%;
+    }
+
+    th,
+    td {
+        display: block;
+        text-align: left;
+        width: 100%;
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 543px) {
+    button {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+    #searchword {
+        width: 200px;
+    }
+    th,
+    td {
+        display: block;
+        text-align: left;
+        width: 100%;
+        font-size: 8px;
+    }
+}

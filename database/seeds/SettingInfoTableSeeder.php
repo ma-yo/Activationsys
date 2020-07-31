@@ -38,6 +38,13 @@ class SettingInfoTableSeeder extends Seeder
             'created_at' => new DateTime(),
             'updated_at' => new DateTime(),
           ],
+          [
+            'settingid' => '0004',
+            'value1' => '300',
+            'description' => 'ライセンス証明書最大表示件数',
+            'created_at' => new DateTime(),
+            'updated_at' => new DateTime(),
+          ],
       ]);
     }
 }

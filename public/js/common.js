@@ -139,5 +139,61 @@ var Common = {
       backdrop: 'static',
       keyboard: false
     });
+  },downloadPdf : function(url, methodType, data){
+    Common.showDialog('info', 'progress', 'PDFファイルのダウンロード中...','しばらくお待ちください。', null, null);
+        
+        let fnGetFileNameFromContentDispostionHeader = function (header) {
+            let contentDispostion = header.split(';');
+            const fileNameToken = "filename*=UTF-8''";
+        
+            let fileName = 'downloaded.pdf';
+            for (let thisValue of contentDispostion) {
+                if (thisValue.trim().indexOf(fileNameToken) === 0) {
+                    fileName = decodeURIComponent(thisValue.trim().replace(fileNameToken, ''));
+                    break;
+                }
+            }
+            return fileName;
+        };
+
+        Common.sleep(1000, function(){
+            fetch(url, {
+                method: methodType,
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8'
+                },
+                body: data,
+            })
+                .then(async res => ({
+                    filename: fnGetFileNameFromContentDispostionHeader(res.headers.get('Content-Disposition')),
+                    blob: await res.blob()
+                }))
+                .then(resObj => {
+                    // It is necessary to create a new blob object with mime-type explicitly set for all browsers except Chrome, but it works for Chrome too.
+                    const newBlob = new Blob([resObj.blob], { type: 'application/pdf' });
+            
+                    // MS Edge and IE don't allow using a blob object directly as link href, instead it is necessary to use msSaveOrOpenBlob
+                    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
+                        window.navigator.msSaveOrOpenBlob(newBlob);
+                    } else {
+                        // For other browsers: create a link pointing to the ObjectURL containing the blob.
+                        const objUrl = window.URL.createObjectURL(newBlob);
+            
+                        let link = document.createElement('a');
+                        link.href = objUrl;
+                        link.download = resObj.filename;
+                        link.click();
+            
+                        // For Firefox it is necessary to delay revoking the ObjectURL.
+                        setTimeout(() => { window.URL.revokeObjectURL(objUrl); }, 250);
+                    }
+                    
+                    Common.closeDialog('progress');
+                })
+                .catch((error) => {
+                    console.log('DOWNLOAD ERROR', error);
+                    Common.closeDialog('progress');
+                });
+        });
   }
 }

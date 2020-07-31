@@ -16,15 +16,16 @@
         <div class="form-group">
             <label for="lictitle-label" class="h2 h2-title text-dark">ライセンス管理メニュー</label><br>
             <div class="border border-dark p-3 rounded">
-                <button type="button" id="genserial-button" name="genserial-button" class="btn btn-dark">シリアル生成</button>
-                <button type="button" id="delserial-button" name="delserial-button" class="btn btn-dark">シリアル削除</button>
-                <button type="button" id="serialunlock-button" name="serialunlock-button" class="btn btn-dark">シリアル凍結リセット</button>
+                <button type="button" id="genserial-button" name="genserial-button" class="btn btn-info">シリアル生成</button>
+                <button type="button" id="delserial-button" name="delserial-button" class="btn btn-info">シリアル削除</button>
+                <button type="button" id="serialunlock-button" name="serialunlock-button" class="btn btn-info">シリアル凍結リセット</button>
             </div>
         </div>
         <div class="form-group">
             <label for="iotitle-label" class="h2 h2-title text-dark">帳票・ファイル出力メニュー</label><br>
             <div class="border border-dark p-3 rounded">
-                <button type="button" id="downloadserial-button" name="downloadserial-button" class="btn btn-primary">登録情報CSV出力</button>
+                <button type="button" id="downloadserial-button" name="downloadserial-button" class="btn btn-info">登録情報CSV出力</button>
+                <button type="button" id="licenseinfo-button" name="licenseinfo-button" class="btn btn-info">ライセンス情報</button>
             </div>
         </div>
         @if($commons['authority'] == "1")
@@ -32,11 +33,11 @@
         <div class="form-group">
             <label for="maintenancetitle-label" class="h2 h2-title text-dark">管理者メニュー</label><br>
             <div class="border border-dark p-3 rounded">
-                <button type="button" id="settinfinfo-button" name="settinginfo-button" class="btn btn-dark">設定値編集</button>
-                <button type="button" id="createuser-button" name="createuser-button" class="btn btn-dark">ユーザー作成</button>
-                <button type="button" id="edituser-button" name="edituser-button" class="btn btn-dark">ユーザー編集</button>
-                <button type="button" id="downloaduser-button" name="downloaduser-button" class="btn btn-primary">ユーザー情報CSV出力</button>
-                <button type="button" id="createapplication-button" name="createapplication-button" class="btn btn-dark">アプリケーション登録</button>
+                <button type="button" id="settinfinfo-button" name="settinginfo-button" class="btn btn-info">設定値編集</button>
+                <button type="button" id="createuser-button" name="createuser-button" class="btn btn-info">ユーザー作成</button>
+                <button type="button" id="edituser-button" name="edituser-button" class="btn btn-info">ユーザー編集</button>
+                <button type="button" id="downloaduser-button" name="downloaduser-button" class="btn btn-info">ユーザー情報CSV出力</button>
+                <button type="button" id="createapplication-button" name="createapplication-button" class="btn btn-info">アプリケーション登録</button>
             </div>
         </div>
         @endif
@@ -45,7 +46,7 @@
         <div class="form-group">
             <label for="maintenancetitle-label" class="h2 h2-title text-dark">一般ユーザーメニュー</label><br>
             <div class="container border border-dark p-3 rounded">
-                <button type="button" id="edituser-button" name="edituser-button" class="btn btn-dark">ユーザー編集</button>
+                <button type="button" id="edituser-button" name="edituser-button" class="btn btn-info">ユーザー編集</button>
             </div>
         </div>
         @endif

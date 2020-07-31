@@ -1,7 +1,7 @@
 <?php
 
+use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,5 +53,8 @@ Route::post('/updateedituser', 'EditUserController@update');
 Route::post('/applicationcreate', 'ApplicationController@create');
 Route::get('/createapplication', 'ApplicationController@index');
 
+Route::post('/licensepdf', 'LicensePdfController@index');
+Route::post('/licenseinfo', 'LicenseInfoController@index');
+Route::post('/searchlicense', 'LicenseInfoController@search');
 
 

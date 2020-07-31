@@ -32,11 +32,14 @@ class SettingInfoController extends Controller
         $maxsearchrow = SettingInfo::where('settingid', '0002')->first();
         //シリアルキー最大登録数
         $maxissued = SettingInfo::where('settingid', '0003')->first();
-        
+        //証明書最大検索数
+        $maxlicenserow = SettingInfo::where('settingid', '0004')->first();
+
         $this->response['commons']['subtitle'] = ' -> メニュー -> 設定値編集';
         $this->response['datas']['serialreset'] = $serialreset->value1;
         $this->response['datas']['maxsearchrow'] = $maxsearchrow->value1;
         $this->response['datas']['maxissued'] = $maxissued->value1;
+        $this->response['datas']['maxlicenserow'] = $maxlicenserow->value1;
         return view('settinginfo/index', $this->response);
     }
 
@@ -59,11 +62,13 @@ class SettingInfoController extends Controller
         $serialreset = $request->input('serialreset-quantity');
         $maxsearchrow = $request->input('maxsearchrow-quantity');
         $maxissued = $request->input('maxissued-quantity');
+        $maxlicenserow = $request->input('maxlicenserow-quantity');
 
         $validator = Validator::make($request->all(), [
             'serialreset-quantity'=>'required|integer|min:10',
             'maxsearchrow-quantity'=>'required|integer|min:1|max:10000',
             'maxissued-quantity'=>'required|integer|min:1|max:1000',
+            'maxlicenserow-quantity'=>'required|integer|min:1|max:1000',
         ]);
 
         if ($validator->fails()) {
@@ -75,6 +80,7 @@ class SettingInfoController extends Controller
         SettingInfo::where('settingid', '0001')->update(['value1' => $serialreset]);
         SettingInfo::where('settingid', '0002')->update(['value1' => $maxsearchrow]);
         SettingInfo::where('settingid', '0003')->update(['value1' => $maxissued]);
+        SettingInfo::where('settingid', '0004')->update(['value1' => $maxlicenserow]);
 
         $settinginfos = SettingInfo::all();
         $this->response['commons']['subtitle'] = ' -> メニュー -> 設定値編集';

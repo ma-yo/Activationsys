@@ -5,11 +5,13 @@ use App\Commons\MessageUtil;
 use App\ActivatedUser;
 use App\Application;
 use DateTime;
+use Exception;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use App\SettingInfo;
+use App\LicenseInfo;
 
 /**
  * シリアルキー作成処理
@@ -79,13 +81,11 @@ class GenSerialController extends Controller
             $serials[] = $this->createSerial();
         }
         
-        $applications = Application::all();
-
         $activatedUsers = $this->createActivatedUsers($serials, $username, $email, $appid);
         $this->response['commons']['subtitle'] = ' -> メニュー -> シリアルキー登録完了';
         $this->response['commons']['message'] = MessageUtil::MSG_INF_0004;
         $this->response['commons']['messageType'] = MessageUtil::TYPE_SUCCESS;
-        $this->response['datas'] = ['activatedUsers' => $activatedUsers];
+        $this->response['datas'] = ['activatedUsers' => $activatedUsers, 'licenseid' => $activatedUsers[0]->licenseid];
         return view('genserial/result', $this->response);
     }
     /**
@@ -127,7 +127,27 @@ class GenSerialController extends Controller
      * @return ActivatedUser
      */
     private function createActivatedUsers($serials, $username, $email, $appid){
-        $activatedUsers = DB::transaction(function () use ( $serials, $username, $email, $appid) {
+
+        //ライセンスを発行する
+        $licenseid = '';
+        while(1){
+            try{
+                //ライセンスIDを発行する
+                $date = new DateTime();
+                $licenseid = $date->getTimestamp();
+                $licenseid = 'lic-' . $licenseid;
+                $newLicense = new LicenseInfo;
+                $newLicense->licenseid = $licenseid;
+                $newLicense->save();
+            break;
+            }catch(Exception $ex){
+                //繰り返す
+                sleep(1);
+            }
+        }
+
+        $activatedUsers = DB::transaction(function () use ( $serials, $username, $email, $appid, $licenseid) {
+
             $array = [];
             foreach ($serials as $serial){
                 while(true){
@@ -138,6 +158,7 @@ class GenSerialController extends Controller
                         $activatedUser->appid = $appid;
                         $activatedUser->name = $username;
                         $activatedUser->email = $email;
+                        $activatedUser->licenseid = $licenseid;
                         $activatedUser->created_at = new DateTime();
                         $activatedUser->save();
                         $array[] = ActivatedUser::where('serialid',$serial)->first();

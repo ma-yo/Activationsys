@@ -31,8 +31,13 @@ class CreateActivatedUsersTable extends Migration
             $table->string('ban')->nullable();
             //デバイス更新回数
             $table->integer('devicechangecount')->default(0);
+            //ライセンス番号
+            $table->string('licenseid')->nullable();
             $table->timestamps();
+            //インデックス
             $table->primary(['serialid'],'activated_users_pkey');
+            //検索インデックス
+            $table->index(['licenseid']);
         });
     }
 

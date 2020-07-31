@@ -10,6 +10,23 @@ $(function () {
         $('#menuback-form').submit();
     });
 
+     /**
+     * ライセンス証明書の発行を実行する
+     */
+    $('#okcancel-modal-ok-button').on('click', function(){
+        Common.closeDialog('okcancel');
+        
+        Common.downloadPdf('/licensepdf','POST',  JSON.stringify({'licid':  $('input[name="licid"]').val()}));
+
+        
+    });
+    /**
+     * モーダルダイアログを開く
+     */
+    $('#pdfdownload-button').on('click', function(){
+        Common.showDialog('info','okcancel','PDF出力','ライセンス証明書PDFを出力しますか？','OK',null);
+    });
+
     /**
      * 作成済みシリアルキーの一覧CSVをダウンロードする
      */

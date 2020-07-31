@@ -63,6 +63,12 @@ $(function () {
         $('#menu-form').submit();
     });
     
+    $('#licenseinfo-button').on('click', function () {
+        $(":button").css('pointer-events', 'none');
+        $('#menu-form').attr("action", "/licenseinfo");
+        $('#menu-form').attr("method", "post");
+        $('#menu-form').submit();
+    });
     /**
      * シリアルキー一覧CSVを出力する
      */
