@@ -169,22 +169,17 @@ var Common = {
                     blob: await res.blob()
                 }))
                 .then(resObj => {
-                    // It is necessary to create a new blob object with mime-type explicitly set for all browsers except Chrome, but it works for Chrome too.
                     const newBlob = new Blob([resObj.blob], { type: 'application/pdf' });
-            
-                    // MS Edge and IE don't allow using a blob object directly as link href, instead it is necessary to use msSaveOrOpenBlob
                     if (window.navigator && window.navigator.msSaveOrOpenBlob) {
                         window.navigator.msSaveOrOpenBlob(newBlob);
                     } else {
-                        // For other browsers: create a link pointing to the ObjectURL containing the blob.
                         const objUrl = window.URL.createObjectURL(newBlob);
             
                         let link = document.createElement('a');
+                        link.target = "_blank";
                         link.href = objUrl;
                         link.download = resObj.filename;
                         link.click();
-            
-                        // For Firefox it is necessary to delay revoking the ObjectURL.
                         setTimeout(() => { window.URL.revokeObjectURL(objUrl); }, 250);
                     }
                     
