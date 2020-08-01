@@ -17,8 +17,9 @@
         @csrf
         <input type="text" id="searchword" name="searchword" class="form-control" value="{{$datas['searchword']}}" 
                 placeholder="ユーザー名やメールアドレスを入力してください。"/>
-        <button type="button" id="searchlicense-button" name="searchlicense-button" class="btn btn-primary btn-md ml-2 mr-auto">検索</button>
+                <button type="button" id="searchlicense-button" name="searchlicense-button" class="btn btn-primary btn-md ml-2 mr-auto">検索</button>
         @if(!empty($datas['licenseinfos']))
+            <button type="button" id="selectall-button" name="selectall-button" class="btn btn-primary btn-md ml-2">全選択</button>
             <button type="button" id="licensepdf-button" name="licensepdf-button" class="btn btn-info btn-md ml-2">PDF出力</button>
         @endif
         <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
@@ -42,8 +43,8 @@
                 @foreach($datas['licenseinfos'] as $info)
                     <tr>
                         <td>
-                            <input type="radio" name="licid"
-                            value="{{ $info->licenseid }}" @if($loop->first) checked @endif>
+                            <input type="checkbox" name="licid[]"
+                            value="{{ $info->licenseid }}">
                         </td>
                         <td><small>{{ $info->licenseid }}</small></td>
                         <td><small><input type='hidden' name='username' value='{{ $info->username }}'/>{{ $info->username }}</small></td>

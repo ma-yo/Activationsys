@@ -139,7 +139,7 @@ var Common = {
       backdrop: 'static',
       keyboard: false
     });
-  },downloadPdf : function(url, methodType, data){
+  },downloadPdf : function(url, methodType, data, sleep){
     Common.showDialog('info', 'progress', 'PDFファイルのダウンロード中...','しばらくお待ちください。', null, null);
         
         let fnGetFileNameFromContentDispostionHeader = function (header) {
@@ -156,7 +156,7 @@ var Common = {
             return fileName;
         };
 
-        Common.sleep(1000, function(){
+        Common.sleep(sleep, function(){
             fetch(url, {
                 method: methodType,
                 headers: {

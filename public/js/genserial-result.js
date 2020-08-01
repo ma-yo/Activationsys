@@ -16,7 +16,7 @@ $(function () {
     $('#okcancel-modal-ok-button').on('click', function(){
         Common.closeDialog('okcancel');
         
-        Common.downloadPdf('/licensepdf','POST',  JSON.stringify({'licid':  $('input[name="licid"]').val()}));
+        Common.downloadPdf('/licensepdf','POST',  JSON.stringify({'licid':  $('input[name="licid"]').val()}), 500);
 
         
     });
