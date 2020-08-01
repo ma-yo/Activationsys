@@ -124,7 +124,6 @@ class LicenseInfoController extends Controller
         $sql .= ' limit ?';
         $prepare[] = $this->getMaxSearchRow();
 
-        Log::info($sql);
         return DB::select($sql, $prepare);
     }
     /**
