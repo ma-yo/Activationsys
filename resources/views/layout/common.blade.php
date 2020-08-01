@@ -12,7 +12,6 @@
     integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
     <link rel="stylesheet" href="css/common.css?{{$commons['systemdate']}}">
     @yield('css')
-
     <!--[if lt IE 9]>
     <script src="js/local/html5shiv/html5shiv-3.7.2.min.js?{{$commons['systemdate']}}"></script>
   <script src="js/local/respond/respond-1.4.2.min.js?{{$commons['systemdate']}}"></script>

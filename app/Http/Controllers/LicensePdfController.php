@@ -5,12 +5,9 @@ namespace App\Http\Controllers;
 use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
 use App\ActivatedUser;
-use Illuminate\Http\Response;
 use DateTime;
-use App\LicenseInfo;
 use Log;
 
-use Knp\Snappy\Pdf;
 class LicensePdfController extends Controller
 {
     public function index(Request $request){

@@ -7,6 +7,7 @@ use App\LicenseInfo;
 use App\Commons\MessageUtil;
 use Illuminate\Support\Facades\DB;
 use App\SettingInfo;
+use Log;
 
 class LicenseInfoController extends Controller
 {
@@ -50,7 +51,7 @@ class LicenseInfoController extends Controller
         $licenseinfos = null;
 
         if(empty($word)){
-            $licenseinfos = LicenseInfo::take(100)->orderBy('updated_at','desc')->orderBy('created_at','desc')->get();
+            $licenseinfos = $this->getLicenseData(null);
         }else{
             //名称とEMAILであいまい検索を行う
 
@@ -93,7 +94,7 @@ class LicenseInfoController extends Controller
         $sql .= ' where activated_users.ban is null';
         
         $prepare = [];
-        if($word != null){
+        if(isset($word)){
             $sql .= ' and (';
             $list = explode(' ', $word);
             foreach($list as $idx => $like){
@@ -122,6 +123,8 @@ class LicenseInfoController extends Controller
         $sql .= ' , license_infos.created_at desc';
         $sql .= ' limit ?';
         $prepare[] = $this->getMaxSearchRow();
+
+        Log::info($sql);
         return DB::select($sql, $prepare);
     }
     /**
