@@ -37,6 +37,7 @@
     <h1>製品名 : {{$productname}}</h1>
     <h2>ライセンス番号 : {{$licenseid}}</h2>
     <h2>ライセンス数 : {{count($serialids)}}</h2>
+    <h2>登録時メールアドレス : {{$email)}}</h2>
     <h2 style='width:100%;text-align:right'>登録者 : {{$username}} 様</h2>
     <h2 style='width:100%;text-align:right'>登録日 : {{$created_at}}</h2>
     <hr>

@@ -21,6 +21,7 @@ class LicensePdfController extends Controller
         $licid = $request->input('licid');
         $activatedUsers = ActivatedUser::where('licenseid', $licid)->get(); 
         $username = $activatedUsers[0]->name;
+        $email = $activatedUsers[0]->email;
         $date = new DateTime();
         $filename = $date->format('Y-m-d-H-i-s') . '-' . $username . '様-license.pdf';
         $filename = str_replace(array("\r\n","\r","\n"), " ", $filename);
@@ -37,6 +38,7 @@ class LicensePdfController extends Controller
         ,'serialids' =>  $serialids
         ,'productname' => $applicatoin 
         , 'username'=> $username
+        , 'email'=> $email
         , 'licenseid' => $licid])->download();
         $response->header("Content-Disposition", "attachment; filename*=UTF-8''" . rawurlencode($filename));
         return $response; 
