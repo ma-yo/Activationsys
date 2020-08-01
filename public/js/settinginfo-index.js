@@ -21,7 +21,9 @@ $(function(){
         $('#settinginfo-form').attr("action","/updatesettinginfo");
         $('#settinginfo-form').submit();
     });
-
+    /**
+     * 設定情報編集を実行する
+     */
     $('#settinginfo-button').on('click', function(){
         Common.showDialog('info', 'okcancel', '設定情報編集', '入力した内容にて設定情報を変更しますか？','更新', null);
     });

@@ -45,11 +45,11 @@ $(function () {
         var blobData = new Blob([bomParams, csvData], {
             type: 'text/csv'
         });
+        //ダウンロードリンクを作成する
         var url = (window.URL || window.webkitURL).createObjectURL(blobData);
         var downloadLink = document.getElementById('csvdownload-link');
         downloadLink.download = Common.formatDate(new Date(), "YYYY-MM-DD-hh-mm-ss") + '-deleted-serial-list.csv';
         downloadLink.href = url;
         $('#csvdownload-link')[0].click();
-
     });
 });

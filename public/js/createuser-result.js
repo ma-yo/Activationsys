@@ -14,7 +14,6 @@ $(function () {
      * 作成済みシリアルキーの一覧CSVをダウンロードする
      */
     $('#csvdownload-button').on('click', function () {
-
         //テーブルの内容をCSVに出力する
         var detailRows = [];
         var headerRows = [];
@@ -45,6 +44,7 @@ $(function () {
         var blobData = new Blob([bomParams, csvData], {
             type: 'text/csv'
         });
+        //ダウンロードリンクを作成する
         var url = (window.URL || window.webkitURL).createObjectURL(blobData);
         var downloadLink = document.getElementById('csvdownload-link');
         downloadLink.download = Common.formatDate(new Date(), "YYYY-MM-DD-hh-mm-ss") + '-created-user.csv';

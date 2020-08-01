@@ -15,10 +15,7 @@ $(function () {
      */
     $('#okcancel-modal-ok-button').on('click', function(){
         Common.closeDialog('okcancel');
-        
         Common.downloadPdf('/licensepdf','POST',  JSON.stringify({'licid':  $('input[name="licid"]').val()}), 500);
-
-        
     });
     /**
      * モーダルダイアログを開く
@@ -51,10 +48,8 @@ $(function () {
             }
         });
         var tableData = $.merge(headerRows, detailRows);
-
         // BOM の用意（文字化け対策）
         var bomParams = new Uint8Array([0xEF, 0xBB, 0xBF]);
-
         // CSVデータ
         var csvData = tableData.map(function (l) {
             return l.join(',')
@@ -62,6 +57,7 @@ $(function () {
         var blobData = new Blob([bomParams, csvData], {
             type: 'text/csv'
         });
+        //ダウンロードリンク作成
         var url = (window.URL || window.webkitURL).createObjectURL(blobData);
         var downloadLink = document.getElementById('csvdownload-link');
         downloadLink.download = Common.formatDate(new Date(), "YYYY-MM-DD-hh-mm-ss") + '-created-serial-list.csv';
