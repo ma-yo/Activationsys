@@ -9,12 +9,14 @@
 @endsection
 
 @section('content')
-<p class="text-info h2 h2-title">シリアル凍結解除を行います。</p>
-<p class="text-info h2 h2-title">ユーザーはアプリケーションを再度利用できるようになります。</p>
 
 <form id="serialunlock-form" class="form" action="" method="post">
     @csrf
     <div class="form border border-info p-3 rounded">
+        
+        <p class="text-info h4 h4-title">シリアル凍結解除を行います。</p>
+        <p class="text-info h4 h4-title">ユーザーはアプリケーションを再度利用できるようになります。</p>
+
         <div class="form-group form-inline">
             <input type="text" id="searchword" name="searchword" class="form-control" value="{{$datas['searchword']}}"
                     placeholder="名称やE-mail,シリアルキーを入力してください。"/>
@@ -23,7 +25,6 @@
                 <button type="button" id="selectall-button" name="selectall-button" class="btn btn-primary btn-md ml-2">全件選択</button>
                 <button type="button" id="serialunlock-button" name="serialunlock-button" class="btn btn-info btn-md ml-2">アンロック解除</button>
             @endif
-            <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
         </div>
         <table class="table table-hover">
             <thead>

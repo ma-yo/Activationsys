@@ -16,13 +16,4 @@ $(function(){
     $('#update-button').on('click', function(){
         Common.showDialog('info', 'okcancel', 'アプリケーション登録', '入力した内容にてアプリケーションを登録しますか？','登録', null);
     });
-    /**
-     * メニュー画面に戻る
-     */
-    $('#menuback-button').on('click', function(){
-        $(":button").css('pointer-events','none');
-        $('#application-form').attr("method","get");
-        $('#application-form').attr("action","/menu");
-        $('#application-form').submit();
-    });
 });

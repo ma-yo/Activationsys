@@ -11,18 +11,13 @@
 @section('content')
 
 <div id="edituser-result">
-    <p class="h2 h2-title text-primary">ユーザー情報を変更しました。</p>
 
-    <form id="menuback-form" class="form" action="/menu" method="get">
-        @csrf
+    <div class="form border border-primary rounded p-3 mb-3">
         <div class="form-group form-inline">
+            <p class="h2 h2-title text-primary">ユーザー情報を変更しました。</p>
             <span class="mr-auto"></span>
             <button type="button" id="csvdownload-button" name="csvdownload-button" class="btn btn-primary btn-md ml-2">CSV出力</button>
-            <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>
         </div>
-    </form>
-
-    <div class="border border-primary rounded p-3 mb-3">
         <table id="resultedituser-table" class="table table-hover">
             <thead>
                 <tr>

@@ -11,15 +11,8 @@
 @section('content')
 
 <div id="settinginfo-result">
-    <p class="h2 h2-title text-primary">設定情報を変更しました。</p>
-
-    <form id="menuback-form" class="form border border-primary rounded p-3 mb-3" action="/menu" method="get">
-        @csrf
-        <div class="form-group form-inline">
-            <span class="mr-auto"></span>
-            <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>
-        </div>
-
+    <div class="border border-primary rounded p-3 mb-3">
+        <p class="h4 h4-title text-primary">設定情報を変更しました。</p>
         <table id="resultsettinginfo-table" class="table table-hover">
             <thead>
                 <tr>
@@ -44,8 +37,7 @@
                 </tbody>
             @endif
         </table>
-
-    </form>
+    </div>
 </div>
 
 

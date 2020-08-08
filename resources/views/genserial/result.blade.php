@@ -11,17 +11,16 @@
 @section('content')
 
 <div id="genserial-result">
-    <p class="h2 h2-title text-primary">下記シリアルを認証ユーザーへ通知してください。</p>
 
-    <form id="menuback-form" class="form border border-primary rounded p-3 mb-3" action="/menu" method="get">
+    <div class="form border border-primary rounded p-3 mb-3">
         @csrf
         <div class="form-group form-inline">
+            <p class="h4 h4-title text-primary">下記シリアルを認証ユーザーへ通知してください。</p>
             <span class="mr-auto"></span>
             <button type="button" id="csvdownload-button" name="csvdownload-button" class="btn btn-primary btn-md ml-2">CSV出力</button>
             <button type="button" id="pdfdownload-button" name="pdfdownload-button" class="btn btn-primary btn-md ml-2">PDF出力</button>
-            <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>
         </div>
-    <input type='hidden' name='licid' value='{{$datas['licenseid']}}'/>
+        <input type='hidden' name='licid' value='{{$datas['licenseid']}}'/>
         <table id="resultserial-table" class="table table-hover">
             <thead>
                 <tr>
@@ -46,7 +45,7 @@
                 </tbody>
             @endif
         </table>
-    </form>
+    </div>
 
     <a style="display: none" id="csvdownload-link" href="#" download=""></a>
 </div>

@@ -11,15 +11,14 @@
 @section('content')
 
 <div id="settinginfo">
-    <p class="h2 h2-title text-info">設定値を変更してください。</p>
+
     <form id="settinginfo-form" class="form border border-info p-3 rounded" action="{{ url('/settinginfo') }}" method="post">
         @csrf
         <div class="form-group form-inline">
+            <p class="h4 h4-title text-info">設定値を変更してください。</p>
             <span class="mr-auto"></span>
             <button type="button" id="settinginfo-button" name="settinginfo-button" class="btn btn-info btn-md ml-2">更新</button>
-            <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>
         </div>
-
         <div class="form-group">
             <label for="serialreset-quantity-label" class="h6">
                 <span class="text-info">シリアルキー関連付け回数制限</span>

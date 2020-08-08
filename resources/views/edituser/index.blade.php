@@ -10,13 +10,12 @@
 
 @section('content')
 
-<p class="text-info h2 h2-title">編集情報を入力してください。</p>
 <form id="edituser-form" class="form border border-info p-3 rounded" action="/" method="post">
     @csrf
     <div class="form-group form-inline">
+        <p class="text-info h4 h4-title">編集情報を入力してください。</p>
         <span class="mr-auto"></span>
         <button type="button" id="edituser-button" name="edituser-button" class="btn btn-info btn-md ml-2">更新</button>
-        <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
     </div>
 
     <div class="form-group">

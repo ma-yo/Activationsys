@@ -1,16 +1,6 @@
 $(function(){
 
     /**
-     * メニュー画面に戻る
-     */
-    $('#menuback-button').on('click', function(){
-        $(":button").css('pointer-events','none');
-        $('#settinginfo-form').attr("method","get");
-        $('#settinginfo-form').attr("action","/menu");
-        $('#settinginfo-form').submit();
-    });
-
-    /**
      * 設定情報の更新を実行する
      */
     $('#okcancel-modal-ok-button').on('click', function(){

@@ -9,12 +9,13 @@
 @endsection
 
 @section('content')
-<p class="text-danger h3 h3-title">シリアル削除を行います。</p>
-<p class="text-danger h3 h3-title">ユーザーはアプリケーションを利用できなくなりますのでご注意ください。</p>
 
 <form id="delserial-form" class="form border border-info p-3 rounded" action="" method="post">
     @csrf
     <div class="form-group form-inline">
+        
+        <p class="text-danger h4 h4-title">シリアル削除を行います。</p>
+        <p class="text-danger h4 h4-title">ユーザーはアプリケーションを利用できなくなりますのでご注意ください。</p> 
         <input type="text" id="searchword" name="searchword" class="form-control" value="{{$datas['searchword']}}" 
                 placeholder="名称やE-mailを入力してください。"/>
         <button type="button" id="searchserial-button" name="searchserial-button" class="btn btn-primary btn-md ml-2 mr-auto">検索</button>
@@ -22,7 +23,6 @@
             <button type="button" id="selectall-button" name="selectall-button" class="btn btn-primary btn-md ml-2">全件選択</button>
             <button type="button" id="delserial-button" name="delserial-button" class="btn btn-info btn-md ml-2">シリアル削除</button>
         @endif
-        <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
     </div>
     <table class="table table-hover">
         <thead>

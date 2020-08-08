@@ -9,14 +9,13 @@
 @endsection
 
 @section('content')
-<p class="text-info h3 h3-title">アプリケーションを登録します。</p>
 
 <form id="application-form" class="form border border-info p-3 rounded" action="" method="post">
     @csrf
     <div class="form-group form-inline">
+        <p class="text-info h4 h4-title">アプリケーションを登録します。</p>
         <span class="mr-auto"></span>
         <button type="button" id="update-button" name="update-button" class="btn btn-primary btn-md ml-2">適用</button>
-        <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
     </div>
     <table class="table table-hover">
         <thead>

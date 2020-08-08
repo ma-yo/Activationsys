@@ -76,6 +76,18 @@
         </div>
         @endif
 
+        @if(isset($commons['username']))
+        @if($commons['subtitle']!=' -> メニュー')
+        <form id="menuback-form" class="form" action="/menu" method="get">
+            @csrf
+            <div class="form-group form-inline">
+                <span class="mr-auto"></span>
+                <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md mt-2">メニューに戻る</button>
+            </div>
+        </form>
+        @endif
+        @endif
+
         @yield('content')
     </div>
 

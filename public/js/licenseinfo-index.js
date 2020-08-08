@@ -34,15 +34,4 @@ $(function(){
         $('#licenseinfo-form').attr("action","/searchlicense");
         $('#licenseinfo-form').submit();
     });
-    /**
-     * メニュー画面に戻る
-     */
-    $('#menuback-button').on('click', function(){
-        $(":button").css('pointer-events','none');
-        $('#licenseinfo-form').attr("method","get");
-        $('#licenseinfo-form').attr("action","/menu");
-        $('#licenseinfo-form').submit();
-    });
-
-    
 });

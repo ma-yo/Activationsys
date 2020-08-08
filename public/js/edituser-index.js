@@ -81,15 +81,4 @@ $(function(){
         $('#edituser-form').attr("action","/updateedituser");
         $('#edituser-form').submit();
     });
-    /**
-     * 
-    /**
-     * メニュー画面に戻る
-     */
-    $('#menuback-button').on('click', function(){
-        $(":button").css('pointer-events','none');
-        $('#edituser-form').attr("method","get");
-        $('#edituser-form').attr("action","/menu");
-        $('#edituser-form').submit();
-    });
 });

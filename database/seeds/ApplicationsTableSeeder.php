@@ -15,11 +15,11 @@ class ApplicationsTableSeeder extends Seeder
       $sqlAry = [];
       $sqlAry[] = [
         'appid' => '001',
-        'name' => 'TopBuzzNewsUploader',
+        'name' => 'camel',
         'created_at' => new DateTime(),
         'updated_at' => new DateTime(),
       ];
-      for($i = 2; $i <=30; $i++){
+      for($i = 2; $i <=50; $i++){
         $id = str_pad($i, 3, 0, STR_PAD_LEFT);
         $sqlAry[] = [
           'appid' =>  $id,

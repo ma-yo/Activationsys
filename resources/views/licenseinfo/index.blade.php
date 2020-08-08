@@ -9,9 +9,9 @@
 @endsection
 
 @section('content')
-<p class="text-info h3 h3-title">ライセンス証明書の発行を行います。</p>
 
 <form id="licenseinfo-form" class="form border border-info p-3 rounded" action="" method="post">
+    <p class="text-info h4 h4-title">ライセンス証明書の発行を行います。</p>
     @csrf
     <div class="form-group form-inline">
         @csrf
@@ -22,7 +22,6 @@
             <button type="button" id="selectall-button" name="selectall-button" class="btn btn-primary btn-md ml-2">全選択</button>
             <button type="button" id="licensepdf-button" name="licensepdf-button" class="btn btn-info btn-md ml-2">PDF出力</button>
         @endif
-        <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
     </div>
     <table class="table table-hover">
         <thead>

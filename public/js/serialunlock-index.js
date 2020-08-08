@@ -41,13 +41,4 @@ $(function(){
         $('#serialunlock-form').attr("action","/searchlockserial");
         $('#serialunlock-form').submit();
     });
-    /**
-     * メニュー画面に戻る
-     */
-    $('#menuback-button').on('click', function(){
-        $(":button").css('pointer-events','none');
-        $('#serialunlock-form').attr("method","get");
-        $('#serialunlock-form').attr("action","/menu");
-        $('#serialunlock-form').submit();
-    });
 });

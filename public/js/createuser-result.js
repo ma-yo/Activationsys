@@ -1,16 +1,6 @@
 $(function () {
 
     /**
-     * メニュー画面に戻る
-     */
-    $('#menuback-button').on('click', function () {
-        $(":button").css('pointer-events', 'none');
-        $('#menuback-form').attr("action", "/menu");
-        $('#menuback-form').attr("method", "get");
-        $('#menuback-form').submit();
-    });
-
-    /**
      * 作成済みシリアルキーの一覧CSVをダウンロードする
      */
     $('#csvdownload-button').on('click', function () {

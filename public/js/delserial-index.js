@@ -41,13 +41,4 @@ $(function(){
         $('#delserial-form').attr("action","/searchserial");
         $('#delserial-form').submit();
     });
-    /**
-     * メニュー画面に戻る
-     */
-    $('#menuback-button').on('click', function(){
-        $(":button").css('pointer-events','none');
-        $('#delserial-form').attr("method","get");
-        $('#delserial-form').attr("action","/menu");
-        $('#delserial-form').submit();
-    });
 });

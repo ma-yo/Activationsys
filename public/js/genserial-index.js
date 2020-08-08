@@ -16,13 +16,4 @@ $(function(){
     $('#genserial-button').on('click', function(){
         Common.showDialog('info', 'okcancel', 'シリアルキーの登録', '入力した内容にてシリアルキーを登録しますか？','シリアル登録', null);
     });
-    /**
-     * メニュー画面に戻る
-     */
-    $('#menuback-button').on('click', function(){
-        $(":button").css('pointer-events','none');
-        $('#genserial-form').attr("method","get");
-        $('#genserial-form').attr("action","/menu");
-        $('#genserial-form').submit();
-    });
 });

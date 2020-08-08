@@ -16,13 +16,4 @@ $(function(){
     $('#createuser-button').on('click', function(){
         Common.showDialog('info', 'okcancel', '新規ユーザー登録', '入力した内容にて新規ユーザー登録しますか？','登録', null);
     });
-    /**
-     * メニュー画面に戻る
-     */
-    $('#menuback-button').on('click', function(){
-        $(":button").css('pointer-events','none');
-        $('#createuser-form').attr("method","get");
-        $('#createuser-form').attr("action","/menu");
-        $('#createuser-form').submit();
-    });
 });

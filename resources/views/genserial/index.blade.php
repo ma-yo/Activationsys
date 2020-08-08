@@ -10,13 +10,12 @@
 
 @section('content')
 
-<p class="text-info h2 h2-title">シリアル生成ユーザー情報を入力してください。</p>
 <form id="genserial-form" class="form border border-info p-3 rounded" action="" method="post">
     @csrf
     <div class="form-group form-inline">
+        <p class="text-info h4 h4-title">シリアル生成ユーザー情報を入力してください。</p>
         <span class="mr-auto"></span>
         <button type="button" id="genserial-button" name="genserial-button" class="btn btn-info btn-md">シリアル作成</button>
-        <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">戻る</button>
     </div>
     <div class="form-group">
         <label class="form-content text-info">アプリケーション</label>

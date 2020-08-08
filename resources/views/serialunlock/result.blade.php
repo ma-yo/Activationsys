@@ -11,13 +11,12 @@
 @section('content')
 
 <div id="serialunlock-result">
-    <p class="h2 h2-title text-primary">シリアルキーのアンロックを行いました。</p>
-    <form id="menuback-form" class="form border border-primary rounded p-3 mb-3" action="/menu" method="get">
+    <div class="form border border-primary rounded p-3 mb-3">
         @csrf
         <div class="form-group form-inline">
+            <p class="h4 h4-title text-primary">シリアルキーのアンロックを行いました。</p>
             <span class="mr-auto"></span>
             <button type="button" id="csvdownload-button" name="csvdownload-button" class="btn btn-primary btn-md ml-2">CSV出力</button>
-            <button type="button" id="menuback-button" name="menuback-button" class="btn btn-secondary btn-md ml-2">メニューに戻る</button>
         </div>
 
         <table id="resultunlockserial-table" class="table table-hover">
@@ -46,7 +45,7 @@
                 </tbody>
             @endif
         </table>
-    </form>
+    </div>
 
     <a style="display: none" id="csvdownload-link" href="#" download=""></a>
 </div>
