@@ -17,9 +17,9 @@ class LicensePdfController extends Controller
         if(!$this->checkLogin($request)){
             return view('login/index', $this->response);
         }
-        
+
         $licid = $request->input('licid');
-        $activatedUsers = ActivatedUser::where('licenseid', $licid)->get(); 
+        $activatedUsers = ActivatedUser::where('licenseid', $licid)->get();
         $username = $activatedUsers[0]->name;
         $email = $activatedUsers[0]->email;
         $date = new DateTime();
@@ -33,15 +33,15 @@ class LicensePdfController extends Controller
             $serialids[] = $user->serialid;
         }
         $created_at = $activatedUsers[0]->created_at->format('Y-m-d');
-        $applicatoin = $activatedUsers[0]->application->first()->name;
+        $application = $activatedUsers[0]->application->name;
         $response = SnappyPdf::loadView('pdf/license', ['created_at'=> $created_at
         ,'serialids' =>  $serialids
-        ,'productname' => $applicatoin 
+        ,'productname' => $application
         , 'username'=> $username
         , 'email'=> $email
         , 'licenseid' => $licid])->download();
         $response->header("Content-Disposition", "attachment; filename*=UTF-8''" . rawurlencode($filename));
-        return $response; 
+        return $response;
 
     }
 }
