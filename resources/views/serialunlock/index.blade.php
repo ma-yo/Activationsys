@@ -13,7 +13,7 @@
 <form id="serialunlock-form" class="form" action="" method="post">
     @csrf
     <div class="form border border-info p-3 rounded">
-        
+
         <p class="text-info h4 h4-title">シリアル凍結解除を行います。</p>
         <p class="text-info h4 h4-title">ユーザーはアプリケーションを再度利用できるようになります。</p>
 
@@ -48,7 +48,7 @@
                                 <input type="checkbox" name="unlock-select[]"
                                 value="{{ $user->serialid }}">
                             </td>
-                            <td><small>{{ $user->application->first()->name }}</small></td>
+                            <td><small>{{ $user->application()->first()->name }}</small></td>
                             <td><small>{{ $user->name }}</small></td>
                             <td><small>{{ $user->email }}</small></td>
                             <td><small>{{ $user->serialid }}</small></td>
