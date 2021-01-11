@@ -33,7 +33,7 @@ class LicensePdfController extends Controller
             $serialids[] = $user->serialid;
         }
         $created_at = $activatedUsers[0]->created_at->format('Y-m-d');
-        $application = $activatedUsers[0]->application->name;
+        $application = $activatedUsers[0]->application()->first()->name;
         $response = SnappyPdf::loadView('pdf/license', ['created_at'=> $created_at
         ,'serialids' =>  $serialids
         ,'productname' => $application
